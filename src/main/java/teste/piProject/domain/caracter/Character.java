@@ -1,4 +1,4 @@
-package teste.piProject.models;
+package teste.piProject.domain.caracter;
 
 import java.text.DateFormat;
 

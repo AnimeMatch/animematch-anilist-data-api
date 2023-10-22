@@ -1,4 +1,4 @@
-package teste.piProject.controllers;
+package teste.piProject.api.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

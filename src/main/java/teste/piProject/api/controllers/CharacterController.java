@@ -1,4 +1,4 @@
-package teste.piProject.controllers;
+package teste.piProject.api.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -6,9 +6,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-import teste.piProject.models.Character;
+import teste.piProject.domain.caracter.Character;
 
-import java.text.DateFormat;
 import java.util.Map;
 
 @RestController
