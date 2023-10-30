@@ -3,8 +3,8 @@ package teste.piProject.service.anime.dto;
 import java.util.Map;
 
 public class AnimeMapper {
-    public static AnimeDto createAnime(Map<String, Map<String, Map<String, String>>> anime){
-        AnimeDto animeCriado = new AnimeDto();
+    public static AnimeSimplesDto createAnimeSimples(Map<String, Map<String, Map<String, String>>> anime){
+        AnimeSimplesDto animeCriado = new AnimeSimplesDto();
 
         animeCriado.setId(Integer.parseInt(String.valueOf(anime.get("Media").get("id"))));
         animeCriado.setTituloRomaji(String.valueOf(anime.get("Media").get("title").get("romaji")));

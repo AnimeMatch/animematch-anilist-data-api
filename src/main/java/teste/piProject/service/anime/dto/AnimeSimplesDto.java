@@ -1,15 +1,15 @@
 package teste.piProject.service.anime.dto;
 
-public class AnimeDto {
+public class AnimeSimplesDto {
     private int id;
     private String tituloRomaji;
     private String tituloEnglish;
     private String tituloNative;
 
-    public AnimeDto() {
+    public AnimeSimplesDto() {
     }
 
-    public AnimeDto(int id, String tituloRomaji, String tituloEnglish, String tituloNative) {
+    public AnimeSimplesDto(int id, String tituloRomaji, String tituloEnglish, String tituloNative) {
         this.id = id;
         this.tituloRomaji = tituloRomaji;
         this.tituloEnglish = tituloEnglish;

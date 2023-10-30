@@ -1,8 +1,8 @@
-package teste.piProject.domain.caracter;
+package teste.piProject.domain;
 
 import java.text.DateFormat;
 
-public class Character {
+public class Personagem {
     private int id;
     private String fullName;
     private String imgLarge;
@@ -12,16 +12,16 @@ public class Character {
     private String age;
     private DateFormat dateOfBirth;
 
-    public Character() {
+    public Personagem() {
     }
-    public Character(int id) {
+    public Personagem(int id) {
         this.id = id;
     }
 
-    public Character(int id, String fullName,
-                     String imgLarge, String imgMedium,
-                     String description, String gender,
-                     String age, DateFormat dateOfBirth) {
+    public Personagem(int id, String fullName,
+                      String imgLarge, String imgMedium,
+                      String description, String gender,
+                      String age, DateFormat dateOfBirth) {
         this.id = id;
         this.fullName = fullName;
         this.imgLarge = imgLarge;

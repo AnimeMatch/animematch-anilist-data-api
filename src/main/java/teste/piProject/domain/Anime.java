@@ -1,4 +1,4 @@
-package teste.piProject.domain.anime;
+package teste.piProject.domain;
 
 public class Anime {
     private int id;
