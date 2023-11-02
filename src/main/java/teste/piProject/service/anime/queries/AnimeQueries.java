@@ -1,12 +1,54 @@
-package teste.piProject.service.anime.model;
+package teste.piProject.service.anime.queries;
 
-import teste.piProject.service.Defaults;
+import teste.piProject.util.DefaultMetods;
 
-import java.util.HashMap;
 import java.util.Map;
 
-public class AnimeRequests {
-    public static Map<String, String> buscaAnime(String nome){
+public class AnimeQueries {
+    public static Map<String, String> buscaAnime(Integer id){
+        String body = "query \n" +
+                "{\n" +
+                "    Media (type: ANIME, id: %d){\n".formatted(id) +
+                "      id\n" +
+                "      averageScore\n" +
+                "      type\n" +
+                "      format\n" +
+                " \t\t\tepisodes     \n" +
+                "      status\n" +
+                "      startDate {\n" +
+                "        year\n" +
+                "        month\n" +
+                "        day\n" +
+                "      }\n" +
+                "      endDate {\n" +
+                "        year\n" +
+                "        month\n" +
+                "        day\n" +
+                "      }\n" +
+                "      genres\n" +
+                "      title{\n" +
+                "        romaji\n" +
+                "        native\n" +
+                "        english\n" +
+                "      }\n" +
+                "      \n" +
+                "      description\n" +
+                "      characters {\n" +
+                "        edges {\n" +
+                "          id\n" +
+                "        }\n" +
+                "      }\n" +
+                "\t\t\texternalLinks {\n" +
+                "        site\n" +
+                "        url\n" +
+                "        icon\n" +
+                "\t\t\t}\n" +
+                "    }\n" +
+                "}";
+        return DefaultMetods.query(body);
+    }
+
+    public static Map<String, String> buscaCards(String nome){
         String body = "query \n" +
                 "{\n" +
                 "  Page (page: 1, perPage: 1) {\n" +
@@ -17,7 +59,7 @@ public class AnimeRequests {
                 "            hasNextPage\n" +
                 "            perPage\n" +
                 "        }\n" +
-                "    media (type: ANIME, sort:SCORE_DESC, format_in: TV){\n" +
+                "    media (search: \"%s\", type: ANIME, sort:SCORE_DESC, format_in: TV){\n".formatted(nome) +
                 "      id\n" +
                 "      averageScore\n" +
                 "      type\n" +
@@ -55,7 +97,7 @@ public class AnimeRequests {
                 "    }\n" +
                 "  }\n" +
                 "}\n";
-        return Defaults.query(body);
+        return DefaultMetods.query(body);
     }
 
     public static Map<String, String> buscaAnimeSimples(String nome){
@@ -69,6 +111,6 @@ public class AnimeRequests {
                 "}\n" +
                 "}\n" +
                 "}";
-        return Defaults.query(body);
+        return DefaultMetods.query(body);
     }
 }

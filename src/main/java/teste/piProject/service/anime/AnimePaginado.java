@@ -1,14 +1,15 @@
 package teste.piProject.service.anime;
 
+import teste.piProject.domain.AnimeMedia;
 import teste.piProject.domain.PageInfo;
 
 import java.util.List;
 
-public class AnimePage {
+public class AnimePaginado {
     private PageInfo pageInfo;
     private List<AnimeMedia> media;
 
-    public AnimePage() {
+    public AnimePaginado() {
     }
 
     public PageInfo getPageInfo() {

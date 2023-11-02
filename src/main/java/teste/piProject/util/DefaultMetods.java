@@ -1,17 +1,15 @@
-package teste.piProject.service;
+package teste.piProject.util;
 
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
-import teste.piProject.service.anime.AnimeMedia;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Stack;
 
-public class Defaults {
+public class DefaultMetods {
    public static <K, V> Map<K, V> request(Map<String, String> corpo){
         String url = "https://graphql.anilist.co";
         RestTemplate restTemplate = new RestTemplate();
@@ -29,4 +27,18 @@ public class Defaults {
        request.put("query", body);
        return request;
    }
+
+    public static <T> T requestByClass(Map<String, String> corpo, Class<T> responseType){
+        String url = "https://graphql.anilist.co";
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<T> response = restTemplate.exchange(
+                url,
+                HttpMethod.POST,
+                new HttpEntity<>(corpo),
+                responseType
+//                new ParameterizedTypeReference<AnimeMedia>() {}
+        );
+        return response.getBody();
+    }
+
 }

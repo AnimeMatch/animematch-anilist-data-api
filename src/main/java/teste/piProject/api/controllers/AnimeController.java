@@ -29,8 +29,8 @@ public class AnimeController {
 //    }
 
     @GetMapping("/get-anime")
-    public ResponseEntity getAnime(@RequestParam String name){
-        ResponseEntity response = animeService.requestAnime(name);
+    public ResponseEntity getAnime(@RequestParam Integer animeId){
+        ResponseEntity response = animeService.requestAnime(animeId);
         return ResponseEntity.status(response.getStatusCode()).body(response.getBody());
     }
 

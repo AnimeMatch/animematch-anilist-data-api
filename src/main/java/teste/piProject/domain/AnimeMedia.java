@@ -1,4 +1,4 @@
-package teste.piProject.service.anime;
+package teste.piProject.domain;
 
 import teste.piProject.domain.*;
 
@@ -18,6 +18,9 @@ public class AnimeMedia {
     private String descricao;
     private List<Personagem> personagens;
     private List<Plataforma> linksExternos;
+
+    public AnimeMedia() {
+    }
 
     public AnimeMedia(int id, Double notaMedia, String tipoMidia, String formato, Integer episodios, String status, StartDate dataLancamento, EndDate dataFinalizado, List<String> generos, Titulo titulos, String descricao, List<Personagem> personagens, List<Plataforma> linksExternos) {
         this.id = id;

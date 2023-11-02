@@ -1,5 +1,7 @@
 package teste.piProject.service.anime.dto;
 
+import teste.piProject.domain.AnimeMedia;
+
 import java.util.Map;
 
 public class AnimeMapper {
@@ -12,4 +14,8 @@ public class AnimeMapper {
         animeCriado.setTituloNative(String.valueOf(anime.get("Media").get("title").get("native")));
         return animeCriado;
     }
+
+//    public static AnimeMedia createAnime(){
+//
+//    }
 }
