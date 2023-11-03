@@ -1,4 +1,4 @@
-package teste.piProject.controllers;
+package teste.piProject.api.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -6,9 +6,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-import teste.piProject.models.Character;
+import teste.piProject.domain.Personagem;
 
-import java.text.DateFormat;
 import java.util.Map;
 
 @RestController
@@ -38,7 +37,7 @@ public class CharacterController {
     }
 
     @PostMapping("/getCharacter")
-    public ResponseEntity<Character> getCharacter(@RequestBody Map<String,String> s){
+    public ResponseEntity<Personagem> getCharacter(@RequestBody Map<String,String> s){
         var request = restTemplate.postForEntity(url,s, Map.class);
         var response = (Map<String, Map<String,Map<String,Map<String,String>>>>)request.getBody().get("data");
 
@@ -53,6 +52,6 @@ public class CharacterController {
         String age = String.valueOf(response.get("Character").get("age"));
 
 
-        return ResponseEntity.ok().body(new Character(id,fullName,imgLarge,imgMedium,description,gender,age,null));
+        return ResponseEntity.ok().body(new Personagem(id,fullName,imgLarge,imgMedium,description,gender,age,null));
     }
 }
