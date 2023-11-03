@@ -1,22 +1,23 @@
 package teste.piProject.service.anime;
 
-import teste.piProject.domain.AnimeMedia;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class AnimeData {
-    private AnimeMedia animeMedia;
+    @JsonProperty("Media")
+    private AnimeMedia media;
 
     public AnimeData() {
     }
 
-    public AnimeData(AnimeMedia animeMedia) {
-        this.animeMedia = animeMedia;
+    public AnimeData(AnimeMedia media) {
+        this.media = media;
     }
 
-    public AnimeMedia getAnimeMedia() {
-        return animeMedia;
+    public AnimeMedia getmedia() {
+        return media;
     }
 
-    public void setAnimeMedia(AnimeMedia animeMedia) {
-        this.animeMedia = animeMedia;
+    public void setmedia(AnimeMedia media) {
+        this.media = media;
     }
 }

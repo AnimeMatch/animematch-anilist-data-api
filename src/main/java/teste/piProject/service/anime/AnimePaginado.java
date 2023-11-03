@@ -1,6 +1,5 @@
 package teste.piProject.service.anime;
 
-import teste.piProject.domain.AnimeMedia;
 import teste.piProject.domain.PageInfo;
 
 import java.util.List;

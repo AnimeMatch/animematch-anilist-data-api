@@ -1,7 +1,5 @@
 package teste.piProject.service.anime.dto;
 
-import teste.piProject.domain.AnimeMedia;
-
 import java.util.Map;
 
 public class AnimeMapper {

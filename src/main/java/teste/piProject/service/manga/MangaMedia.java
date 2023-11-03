@@ -11,15 +11,15 @@ public class MangaMedia {
     private String formato;
     private Integer Capitulos;
     private String status;
-    private StartDate dataLancamento;
-    private EndDate dataFinalizado;
+    private StartEndDate dataLancamento;
+    private StartEndDate dataFinalizado;
     private List<String> generos;
     private Titulo titulos;
     private String descricao;
     private List<Personagem> personagens;
     private List<Plataforma> linksExternos;
 
-    public MangaMedia(int id, Double notaMedia, String tipoMidia, String formato, Integer capitulos, String status, StartDate dataLancamento, EndDate dataFinalizado, List<String> generos, Titulo titulos, String descricao, List<Personagem> personagens, List<Plataforma> linksExternos) {
+    public MangaMedia(int id, Double notaMedia, String tipoMidia, String formato, Integer capitulos, String status, StartEndDate dataLancamento, StartEndDate dataFinalizado, List<String> generos, Titulo titulos, String descricao, List<Personagem> personagens, List<Plataforma> linksExternos) {
         this.id = id;
         this.notaMedia = notaMedia;
         this.tipoMidia = tipoMidia;
@@ -83,19 +83,19 @@ public class MangaMedia {
         this.status = status;
     }
 
-    public StartDate getDataLancamento() {
+    public StartEndDate getDataLancamento() {
         return dataLancamento;
     }
 
-    public void setDataLancamento(StartDate dataLancamento) {
+    public void setDataLancamento(StartEndDate dataLancamento) {
         this.dataLancamento = dataLancamento;
     }
 
-    public EndDate getDataFinalizado() {
+    public StartEndDate getDataFinalizado() {
         return dataFinalizado;
     }
 
-    public void setDataFinalizado(EndDate dataFinalizado) {
+    public void setDataFinalizado(StartEndDate dataFinalizado) {
         this.dataFinalizado = dataFinalizado;
     }
 

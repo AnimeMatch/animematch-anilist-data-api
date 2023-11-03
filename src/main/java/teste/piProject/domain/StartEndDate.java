@@ -1,11 +1,11 @@
 package teste.piProject.domain;
 
-public class EndDate {
+public class StartEndDate {
     private int year;
     private int month;
     private int day;
 
-    public EndDate() {
+    public StartEndDate() {
     }
 
     public int getYear() {

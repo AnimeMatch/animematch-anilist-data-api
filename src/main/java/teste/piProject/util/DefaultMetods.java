@@ -10,17 +10,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DefaultMetods {
-   public static <K, V> Map<K, V> request(Map<String, String> corpo){
-        String url = "https://graphql.anilist.co";
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Map<K, V>> response = restTemplate.exchange(
-                url,
-                HttpMethod.POST,
-                new HttpEntity<>(corpo),
-                new ParameterizedTypeReference<Map<K, V>>() {}
-        );
-        return response.getBody();
-   }
+//   public static <K, V> Map<K, V> request(Map<String, String> corpo){
+//        String url = "https://graphql.anilist.co";
+//        RestTemplate restTemplate = new RestTemplate();
+//        ResponseEntity<Map<K, V>> response = restTemplate.exchange(
+//                url,
+//                HttpMethod.POST,
+//                new HttpEntity<>(corpo),
+//                new ParameterizedTypeReference<Map<K, V>>() {}
+//        );
+//        return response.getBody();
+//   }
 
    public static Map<String, String> query(String body){
        Map<String, String> request = new HashMap<>();
@@ -36,7 +36,7 @@ public class DefaultMetods {
                 HttpMethod.POST,
                 new HttpEntity<>(corpo),
                 responseType
-//                new ParameterizedTypeReference<AnimeMedia>() {}
+//                new ParameterizedTypeReference<AnimeQuery>() {}
         );
         return response.getBody();
     }

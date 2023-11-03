@@ -28,15 +28,21 @@ public class AnimeController {
 //        return ResponseEntity.ok().body(id);
 //    }
 
-    @GetMapping("/get-anime")
+    @GetMapping("/anime")
     public ResponseEntity getAnime(@RequestParam Integer animeId){
         ResponseEntity response = animeService.requestAnime(animeId);
         return ResponseEntity.status(response.getStatusCode()).body(response.getBody());
     }
 
-    @GetMapping("/get-anime-simples")
-    public ResponseEntity getAnimeSimples(@RequestParam String name){
-        ResponseEntity response = animeService.requestAnimeSimples(name);
+//    @GetMapping("/anime-simples")
+//    public ResponseEntity getAnimeSimples(@RequestParam String name){
+//        ResponseEntity response = animeService.requestAnimeSimples(name);
+//        return ResponseEntity.status(response.getStatusCode()).body(response.getBody());
+//    }
+
+    @GetMapping("/cards")
+    public ResponseEntity getCards(@RequestParam int page, @RequestParam int qtdPaginas){
+        ResponseEntity response = animeService.animeCard(page, qtdPaginas);
         return ResponseEntity.status(response.getStatusCode()).body(response.getBody());
     }
 }

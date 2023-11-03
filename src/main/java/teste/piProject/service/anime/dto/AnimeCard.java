@@ -1,40 +1,67 @@
 package teste.piProject.service.anime.dto;
 
+import teste.piProject.domain.CoverImage;
+import teste.piProject.domain.StartEndDate;
+import teste.piProject.domain.Titulo;
+
+import java.util.List;
+
 public class AnimeCard {
-    private int card;
-    private String title;
-    private String coverImage;
+    private int id;
+    private String format;
+    private String status;
+    private StartEndDate startDate;
+    private TituloDto title;
+    private CoverImage coverImage;
 
     public AnimeCard() {
     }
 
-    public AnimeCard(int card, String title, String coverImage) {
-        this.card = card;
-        this.title = title;
-        this.coverImage = coverImage;
+    public int getId() {
+        return id;
     }
 
-    public int getCard() {
-        return card;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setCard(int card) {
-        this.card = card;
+    public String getFormat() {
+        return format;
     }
 
-    public String getTitle() {
+    public void setFormat(String format) {
+        this.format = format;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public StartEndDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(StartEndDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public TituloDto getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(TituloDto title) {
         this.title = title;
     }
 
-    public String getCoverImage() {
+    public CoverImage getCoverImage() {
         return coverImage;
     }
 
-    public void setCoverImage(String coverImage) {
+    public void setCoverImage(CoverImage coverImage) {
         this.coverImage = coverImage;
     }
 }
