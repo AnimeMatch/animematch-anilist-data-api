@@ -98,18 +98,4 @@ public class AnimeQueries {
                 "}";
         return DefaultMetods.query(body);
     }
-
-//    public static Map<String, String> buscaAnimeSimples(String nome){
-//        String body = "query {\n" +
-//                "Media(search: \"%s\", type: ANIME, format_in: TV, status: FINISHED) {\n".formatted(nome) +
-//                "id\n" +
-//                "title {\n" +
-//                "romaji\n" +
-//                "english\n" +
-//                "native\n" +
-//                "}\n" +
-//                "}\n" +
-//                "}";
-//        return DefaultMetods.query(body);
-//    }
 }

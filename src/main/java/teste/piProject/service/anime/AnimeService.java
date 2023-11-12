@@ -13,15 +13,6 @@ import java.util.Map;
 
 @Service
 public class AnimeService{
-//    public ResponseEntity<AnimeSimplesDto> requestAnimeSimples(String animeName){
-//        Map<String, Map<String, Map<String, Map<String, String>>>> request =
-//                DefaultMetods.request(
-//                        AnimeQueries.buscaAnimeSimples(animeName));
-//        var response = request.get("data");
-//
-//        AnimeSimplesDto anime = AnimeMapper.createAnimeSimples(response);
-//        return ResponseEntity.status(200).body(anime);
-//    }
 
     public ResponseEntity<AnimeMedia> requestAnime(Integer animeId){
         AnimeQuery response =
