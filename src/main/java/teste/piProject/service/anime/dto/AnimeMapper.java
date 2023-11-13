@@ -1,5 +1,7 @@
 package teste.piProject.service.anime.dto;
 
+import teste.piProject.service.anime.AnimeMedia;
+
 import java.util.Map;
 
 public class AnimeMapper {
@@ -13,7 +15,26 @@ public class AnimeMapper {
         return animeCriado;
     }
 
-//    public static AnimeMedia createAnime(){
-//
-//    }
+    public static AnimeCompletoDto createAnimeCompleto(AnimeDadosComplementaresDto complementar, AnimeMedia anime){
+        AnimeCompletoDto animeResponse = new AnimeCompletoDto(
+                anime.getId(),
+                anime.getAverageScore(),
+                anime.getType(),
+                anime.getFormat(),
+                anime.getEpisodes(),
+                anime.getStatus(),
+                anime.getStartDate(),
+                anime.getEndDate(),
+                anime.getGenres(),
+                anime.getTitle(),
+                anime.getCoverImage(),
+                anime.getDescription(),
+                anime.getCharacters(),
+                anime.getExternalLinks(),
+                complementar.getLike(),
+                complementar.getDeslike(),
+                complementar.getView()
+        );
+        return animeResponse;
+    }
 }
