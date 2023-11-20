@@ -37,4 +37,13 @@ public class AnimeMapper {
         );
         return animeResponse;
     }
+
+    public static AnimeParaSalvarDto animeParaSalvar(AnimeCompletoDto anime){
+        final AnimeParaSalvarDto animeResponse = new AnimeParaSalvarDto(
+                anime.getId(),
+                anime.getAverageScore(),
+                anime.getCoverImage().getExtraLarge()
+        );
+        return animeResponse;
+    }
 }

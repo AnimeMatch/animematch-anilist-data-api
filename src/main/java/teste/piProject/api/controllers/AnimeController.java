@@ -12,6 +12,7 @@ import teste.piProject.domain.Page;
 import teste.piProject.service.anime.AnimeMedia;
 import teste.piProject.service.anime.AnimeService;
 import teste.piProject.service.anime.dto.AnimeCompletoDto;
+import teste.piProject.service.anime.dto.AnimeParaSalvarDto;
 
 import java.util.Map;
 
@@ -33,20 +34,32 @@ public class AnimeController {
             @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
     })
     @GetMapping("/anime")
-    public ResponseEntity getAnime(@RequestParam Integer animeId){
-        ResponseEntity response = animeService.requestAnime(animeId);
-        return ResponseEntity.status(response.getStatusCode()).body(response.getBody());
+    public ResponseEntity<AnimeCompletoDto> getAnime(@RequestParam Integer animeId){
+        AnimeCompletoDto anime = animeService.requestAnime(animeId);
+        return ResponseEntity.status(200).body(anime);
     }
 
     @GetMapping("/cards")
     public ResponseEntity<Page> getCards(@RequestParam int page, @RequestParam int qtdPaginas){
-        ResponseEntity<Page> response = animeService.animeCard(page, qtdPaginas);
+        ResponseEntity<Page> response = animeService.cardAnimesDaTemporada(page, qtdPaginas);
         return ResponseEntity.status(response.getStatusCode()).body(response.getBody());
     }
 
-    @GetMapping("/cards-temporada")
-    public ResponseEntity<Page> getMaisVizualizados(@RequestParam int page, @RequestParam int qtdPaginas){
-        ResponseEntity<Page> response = animeService.animeCard(page, qtdPaginas);
+    @GetMapping("/cards/temporada")
+    public ResponseEntity<Page> getAnimesDaTemporada(@RequestParam int page, @RequestParam int qtdPaginas){
+        ResponseEntity<Page> response = animeService.cardAnimesDaTemporada(page, qtdPaginas);
         return ResponseEntity.status(response.getStatusCode()).body(response.getBody());
+    }
+
+    @GetMapping("/cards/mais-curtidos")
+    public ResponseEntity<Page> getAnimesMaisCurtidos(){
+        ResponseEntity<Page> response = animeService.cardAnimesMaisCurtidos();
+        return ResponseEntity.status(response.getStatusCode()).body(response.getBody());
+    }
+
+    @GetMapping("/anime-para-salvar")
+    public ResponseEntity<AnimeParaSalvarDto> getAnimeParaSalvar(@RequestParam int idApi){
+        AnimeParaSalvarDto anime = animeService.animeParaSalvar(idApi);
+        return ResponseEntity.status(200).body(anime);
     }
 }

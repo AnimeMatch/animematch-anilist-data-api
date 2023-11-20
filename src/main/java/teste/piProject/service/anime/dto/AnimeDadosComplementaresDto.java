@@ -8,6 +8,12 @@ public class AnimeDadosComplementaresDto {
     public AnimeDadosComplementaresDto() {
     }
 
+    public AnimeDadosComplementaresDto(int like, int deslike, int view) {
+        this.like = like;
+        this.deslike = deslike;
+        this.view = view;
+    }
+
     public int getLike() {
         return like;
     }

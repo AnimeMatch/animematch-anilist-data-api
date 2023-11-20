@@ -8,6 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class DefaultMetods {
 //   public static <K, V> Map<K, V> request(Map<String, String> corpo){
@@ -28,8 +29,8 @@ public class DefaultMetods {
        return request;
    }
 
-    public static <T> T requestByClass(Map<String, String> corpo, Class<T> responseType){
-        String url = "https://graphql.anilist.co";
+    public static <T> T postRequestByClass(Map<String, String> corpo, Class<T> responseType, String urlReceived){
+        String url = urlReceived;
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<T> response = restTemplate.exchange(
                 url,
@@ -41,4 +42,31 @@ public class DefaultMetods {
         return response.getBody();
     }
 
+    public static <T> T postRequestByClass(Map<String, String> corpo, Class<T> responseType){
+        final String url = "https://graphql.anilist.co";
+        final RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<T> response = restTemplate.exchange(
+                url,
+                HttpMethod.POST,
+                new HttpEntity<>(corpo),
+                responseType
+        );
+        return response.getBody();
+    }
+
+    public static <T> T getRequestByClass(Class<T> responseType, String url){
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(
+                url,
+                responseType);
+    }
+
+    public static <T> T getRequestByClass(Class<T> responseType, String url, Object param){
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(
+                url,
+                responseType,
+                param
+        );
+    }
 }

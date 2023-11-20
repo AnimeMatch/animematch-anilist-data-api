@@ -98,4 +98,8 @@ public class AnimeQueries {
                 "}";
         return DefaultMetods.query(body);
     }
+
+//    public static Map<String, String> animeMoreliked(Integer pagina, Integer porPagina){
+//
+//    }
 }
