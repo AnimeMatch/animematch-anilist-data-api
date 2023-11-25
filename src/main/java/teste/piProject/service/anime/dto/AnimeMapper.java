@@ -41,6 +41,7 @@ public class AnimeMapper {
     public static AnimeParaSalvarDto animeParaSalvar(AnimeCompletoDto anime){
         final AnimeParaSalvarDto animeResponse = new AnimeParaSalvarDto(
                 anime.getId(),
+                anime.getTitle().getEnglish(),
                 anime.getAverageScore(),
                 anime.getCoverImage().getExtraLarge()
         );
