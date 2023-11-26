@@ -24,7 +24,7 @@ public class AnimeController {
     @Autowired
     private RestTemplate restTemplate;
     @Autowired
-    private AnimeService animeService;
+    private AnimeService service;
 
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Recebimento de anime bem-sucedido",
@@ -35,25 +35,25 @@ public class AnimeController {
     })
     @GetMapping("/anime")
     public ResponseEntity<AnimeCompletoDto> getAnime(@RequestParam Integer animeId){
-        AnimeCompletoDto anime = animeService.requestAnime(animeId);
+        AnimeCompletoDto anime = service.requestAnime(animeId);
         return ResponseEntity.status(200).body(anime);
     }
 
     @GetMapping("/cards")
     public ResponseEntity<Page> getCards(@RequestParam int page, @RequestParam int qtdPaginas){
-        ResponseEntity<Page> response = animeService.cardAnimesDaTemporada(page, qtdPaginas);
+        ResponseEntity<Page> response = service.cardAnimesDaTemporada(page, qtdPaginas);
         return ResponseEntity.status(response.getStatusCode()).body(response.getBody());
     }
 
     @GetMapping("/cards/temporada")
     public ResponseEntity<Page> getAnimesDaTemporada(@RequestParam int page, @RequestParam int qtdPaginas){
-        ResponseEntity<Page> response = animeService.cardAnimesDaTemporada(page, qtdPaginas);
+        ResponseEntity<Page> response = service.cardAnimesDaTemporada(page, qtdPaginas);
         return ResponseEntity.status(response.getStatusCode()).body(response.getBody());
     }
 
     @GetMapping("/cards/mais-curtidos")
     public ResponseEntity<Page> getAnimesMaisCurtidos(){
-        ResponseEntity<Page> response = animeService.cardAnimesMaisCurtidos();
+        ResponseEntity<Page> response = service.cardAnimesMaisCurtidos();
         return ResponseEntity.status(response.getStatusCode()).body(response.getBody());
     }
 
@@ -61,10 +61,22 @@ public class AnimeController {
     public ResponseEntity<AnimeParaSalvarDto> getAnimeParaSalvar(@PathVariable String idApi){
         AnimeParaSalvarDto anime = null;
         try {
-           anime = animeService.animeParaSalvar(Integer.parseInt(idApi));
+           anime = service.animeParaSalvar(Integer.parseInt(idApi));
         } catch (Exception e){
             throw e;
         }
         return ResponseEntity.status(200).body(anime);
+    }
+
+    @GetMapping("/cards/search")
+    public ResponseEntity<Page> getSearch(@RequestParam String tituloBusca, @RequestParam int page, @RequestParam int qtdPaginas){
+        Page animes = service.searchAnime(tituloBusca, page, qtdPaginas);
+        return ResponseEntity.status(200).body(animes);
+    }
+
+    @GetMapping("/cards/genero")
+    public ResponseEntity<Page> getAnimesPorGenero(@RequestParam String genero, @RequestParam int page, @RequestParam int qtdPaginas){
+        Page animes = service.getAnimesPeloGenero(genero, page, qtdPaginas);
+        return ResponseEntity.status(200).body(animes);
     }
 }
