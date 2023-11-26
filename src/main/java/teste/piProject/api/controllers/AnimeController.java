@@ -20,11 +20,11 @@ import java.util.Map;
 @RequestMapping("/animes")
 public class AnimeController {
 
-    public static final String url =  "https://graphql.anilist.co";
+    private static final String url =  "https://graphql.anilist.co";
     @Autowired
-    RestTemplate restTemplate;
+    private RestTemplate restTemplate;
     @Autowired
-    AnimeService animeService;
+    private AnimeService animeService;
 
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Recebimento de anime bem-sucedido",
@@ -57,9 +57,14 @@ public class AnimeController {
         return ResponseEntity.status(response.getStatusCode()).body(response.getBody());
     }
 
-    @GetMapping("/anime-para-salvar")
-    public ResponseEntity<AnimeParaSalvarDto> getAnimeParaSalvar(@RequestParam int idApi){
-        AnimeParaSalvarDto anime = animeService.animeParaSalvar(idApi);
+    @GetMapping("/anime-para-salvar/{idApi}")
+    public ResponseEntity<AnimeParaSalvarDto> getAnimeParaSalvar(@PathVariable String idApi){
+        AnimeParaSalvarDto anime = null;
+        try {
+           anime = animeService.animeParaSalvar(Integer.parseInt(idApi));
+        } catch (Exception e){
+            throw e;
+        }
         return ResponseEntity.status(200).body(anime);
     }
 }

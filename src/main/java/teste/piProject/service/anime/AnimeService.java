@@ -32,7 +32,7 @@ public class AnimeService{
                         "Erro ao consultar dados de vizualisação, like e deslike");
             }
         }else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Erro na consulta de animes");
         }
     }
 
@@ -47,7 +47,7 @@ public class AnimeService{
 //                new ParameterizedTypeReference<AnimeDadosComplementaresDto>() {}
 //        );
 //        return response.getBody();
-        String url = "https://localhost:8080/anime/dados-complementares";
+        String url = "http://localhost:8080/anime/dados-complementares?id={id}";
         AnimeDadosComplementaresDto response =
                 DefaultMetods.getRequestByClass(
                         AnimeDadosComplementaresDto.class,
@@ -86,7 +86,7 @@ public class AnimeService{
         }
     }
 
-    public AnimeParaSalvarDto animeParaSalvar(int idApi){
+    public AnimeParaSalvarDto animeParaSalvar(Integer idApi){
         try {
             AnimeCompletoDto anime = this.requestAnime(idApi);
             return AnimeMapper.animeParaSalvar(anime);
