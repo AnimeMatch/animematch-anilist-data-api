@@ -2,6 +2,9 @@ package teste.piProject.service.anime;
 import teste.piProject.domain.*;
 import teste.piProject.service.Character.CharacterData;
 import teste.piProject.service.Character.dto.PersonagemEdges;
+import teste.piProject.service.anime.dto.Studios;
+import teste.piProject.util.DateDetails;
+
 import java.util.List;
 
 public class AnimeMedia {
@@ -17,6 +20,7 @@ public class AnimeMedia {
     private Titulo title;
     private CoverImage coverImage;
     private String description;
+    private Studios studios;
     private Characters characters;
     private List<Plataforma> externalLinks;
 
@@ -119,6 +123,14 @@ public class AnimeMedia {
         return description;
     }
 
+    public Studios getStudios() {
+        return studios;
+    }
+
+    public void setStudios(Studios studios) {
+        this.studios = studios;
+    }
+
     public void setDescription(String description) {
         this.description = description;
     }
@@ -137,5 +149,8 @@ public class AnimeMedia {
 
     public void setExternalLinks(List<Plataforma> externalLinks) {
         this.externalLinks = externalLinks;
+    }
+    public String getEstacao(){
+        return DateDetails.estacaoAtual();
     }
 }

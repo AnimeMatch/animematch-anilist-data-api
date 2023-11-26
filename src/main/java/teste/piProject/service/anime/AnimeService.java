@@ -36,23 +36,13 @@ public class AnimeService{
         }
     }
 
-    public AnimeDadosComplementaresDto receberDadosComplementaresAnime(int id){
-//        String url = "https://localhost:8080/anime/dados-complementares";
-//        RestTemplate restTemplate = new RestTemplate();
-//        Map<String, String> corpo = Map.of("id", "%d".formatted(id));
-//        ResponseEntity<AnimeDadosComplementaresDto> response = restTemplate.exchange(
-//                url,
-//                HttpMethod.POST,
-//                new HttpEntity<>(corpo),
-//                new ParameterizedTypeReference<AnimeDadosComplementaresDto>() {}
-//        );
-//        return response.getBody();
-        String url = "http://localhost:8080/anime/dados-complementares?id={id}";
+    public AnimeDadosComplementaresDto receberDadosComplementaresAnime(int idApi){
+        String url = "http://localhost:8080/anime/dados-complementares?idApi={idApi}";
         AnimeDadosComplementaresDto response =
                 DefaultMetods.getRequestByClass(
                         AnimeDadosComplementaresDto.class,
                         url,
-                        id);
+                        idApi);
         if (response != null) {
             return response;
         }else {
@@ -92,6 +82,30 @@ public class AnimeService{
             return AnimeMapper.animeParaSalvar(anime);
         } catch (Exception e){
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "%s".formatted(e));
+        }
+    }
+
+    public Page searchAnime(String tituloBusca, int page, int paginas){
+        try {
+            CardQuery response =
+                DefaultMetods.postRequestByClass(
+                    AnimeQueries.buscaAnimePeloNome(tituloBusca, page, paginas),
+                        CardQuery.class);
+            return response.getData().getPage();
+        } catch (Exception e){
+            throw e;
+        }
+    }
+
+    public Page getAnimesPeloGenero(String generos, int page, int paginas){
+        try {
+            CardQuery response =
+                DefaultMetods.postRequestByClass(
+                    AnimeQueries.buscaPeloGenero(generos, page, paginas),
+                        CardQuery.class);
+            return response.getData().getPage();
+        } catch (Exception e){
+            throw e;
         }
     }
 }

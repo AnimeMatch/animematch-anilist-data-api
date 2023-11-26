@@ -29,6 +29,7 @@ public class AnimeMapper {
                 anime.getTitle(),
                 anime.getCoverImage(),
                 anime.getDescription(),
+                anime.getStudios(),
                 anime.getCharacters(),
                 anime.getExternalLinks(),
                 complementar.getLike(),
