@@ -36,13 +36,13 @@ public class AnimeService{
         }
     }
 
-    public AnimeDadosComplementaresDto receberDadosComplementaresAnime(int idApi){
-        String url = "http://localhost:8080/anime/dados-complementares?idApi={idApi}";
+    public AnimeDadosComplementaresDto receberDadosComplementaresAnime(int id){
+        String url = "http://localhost:8080/anime/dados-complementares?id={id}";
         AnimeDadosComplementaresDto response =
                 DefaultMetods.getRequestByClass(
                         AnimeDadosComplementaresDto.class,
                         url,
-                        idApi);
+                        id);
         if (response != null) {
             return response;
         }else {
