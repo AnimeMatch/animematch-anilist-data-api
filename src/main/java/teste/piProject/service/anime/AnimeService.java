@@ -108,4 +108,16 @@ public class AnimeService{
             throw e;
         }
     }
+
+    public Page getAnimesEmTrend(int page, int paginas){
+        try {
+            CardQuery response =
+                    DefaultMetods.postRequestByClass(
+                            AnimeQueries.ReceberAnimesEmTrend(page, paginas),
+                            CardQuery.class);
+            return response.getData().getPage();
+        } catch (Exception e){
+            throw e;
+        }
+    }
 }
