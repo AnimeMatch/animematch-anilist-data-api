@@ -186,4 +186,42 @@ public class AnimeQueries {
                 "}";
         return DefaultMetods.query(body);
     }
+
+    public static Map<String, String> ReceberAnimesEmTrend(Integer pagina, Integer porPagina){
+        String filtro = "    media (sort: [TRENDING_DESC, POPULARITY_DESC]){\n";
+        String body = "query\n" +
+                "{\n" +
+                "  Page (page: %d, perPage: %d) {\n".formatted(pagina, porPagina) +
+                "        pageInfo {\n" +
+                "            total\n" +
+                "            currentPage\n" +
+                "            lastPage\n" +
+                "            hasNextPage\n" +
+                "            perPage\n" +
+                "        }\n" +
+                "\n" +
+                filtro +
+                "      id\n" +
+                "      averageScore\n" +
+                "      type\n" +
+                "      format\n" +
+                "      status\n" +
+                "      startDate {\n" +
+                "        year\n" +
+                "        month\n" +
+                "        day\n" +
+                "      }\n" +
+                "      title{\n" +
+                "        romaji\n" +
+                "        english\n" +
+                "      }\n" +
+                "      coverImage {\n" +
+                "        extraLarge\n" +
+                "        large\n" +
+                "      }\n" +
+                "    }\n" +
+                "  }\n" +
+                "}";
+        return DefaultMetods.query(body);
+    }
 }
