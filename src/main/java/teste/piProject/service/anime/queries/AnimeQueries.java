@@ -9,7 +9,7 @@ public class AnimeQueries {
     public static Map<String, String> buscaAnime(Integer id){
         String body = "query \n" +
                 "{\n" +
-                "    Media (id: %d){\n".formatted(id) +
+                "    Media (type: ANIME, id: %d){\n".formatted(id) +
                 "    id\n" +
                 "    averageScore\n" +
                 "    type\n" +
@@ -188,7 +188,7 @@ public class AnimeQueries {
     }
 
     public static Map<String, String> ReceberAnimesEmTrend(Integer pagina, Integer porPagina){
-        String filtro = "    media (sort: [TRENDING_DESC, POPULARITY_DESC]){\n";
+        String filtro = "    media (type: ANIME, sort: [TRENDING_DESC, POPULARITY_DESC]){\n";
         String body = "query\n" +
                 "{\n" +
                 "  Page (page: %d, perPage: %d) {\n".formatted(pagina, porPagina) +
