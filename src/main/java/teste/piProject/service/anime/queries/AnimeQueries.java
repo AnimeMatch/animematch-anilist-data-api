@@ -9,7 +9,7 @@ public class AnimeQueries {
     public static Map<String, String> buscaAnime(Integer id){
         String body = "query \n" +
                 "{\n" +
-                "    Media (type: ANIME, id: %d){\n".formatted(id) +
+                "    Media (id: %d){\n".formatted(id) +
                 "    id\n" +
                 "    averageScore\n" +
                 "    type\n" +
