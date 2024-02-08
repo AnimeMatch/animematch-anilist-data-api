@@ -2,20 +2,26 @@ package teste.piProject.service.anime;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
 import teste.piProject.domain.Page;
 import teste.piProject.service.anime.dto.*;
 import teste.piProject.util.DefaultMetods;
-import teste.piProject.service.anime.queries.AnimeQueries;
-import java.util.Map;
+import teste.piProject.service.queries.Queries;
+
+import static teste.piProject.service.queries.Queries.TypeMedia.ANIME;
 
 @Service
 public class AnimeService{
+    private Queries queries;
+
+    public AnimeService() {
+        this.queries = new Queries(ANIME);
+    }
+
     public AnimeCompletoDto requestAnime(Integer animeId){
         AnimeQuery response =
                 DefaultMetods.postRequestByClass(
-                        AnimeQueries.buscaAnime(animeId),
+                        this.queries.buscaAnime(animeId),
                         AnimeQuery.class);
         if (response != null) {
             AnimeMedia res = response.getData().getmedia();
@@ -51,9 +57,10 @@ public class AnimeService{
     }
 
     public ResponseEntity<Page> cardAnimesDaTemporada(Integer page, Integer qtdPaginas){
+
         CardQuery response =
                 DefaultMetods.postRequestByClass(
-                        AnimeQueries.animeSeason(page, qtdPaginas),
+                        this.queries.animeSeason(page, qtdPaginas),
                         CardQuery.class);
         if (response != null) {
             Page res = response.getData().getPage();
@@ -89,7 +96,7 @@ public class AnimeService{
         try {
             CardQuery response =
                 DefaultMetods.postRequestByClass(
-                    AnimeQueries.buscaAnimePeloNome(tituloBusca, page, paginas),
+                        this.queries.buscaAnimePeloNome(tituloBusca, page, paginas),
                         CardQuery.class);
             return response.getData().getPage();
         } catch (Exception e){
@@ -101,7 +108,7 @@ public class AnimeService{
         try {
             CardQuery response =
                 DefaultMetods.postRequestByClass(
-                    AnimeQueries.buscaPeloGenero(generos, page, paginas),
+                        this.queries.buscaPeloGenero(generos, page, paginas),
                         CardQuery.class);
             return response.getData().getPage();
         } catch (Exception e){
@@ -113,7 +120,7 @@ public class AnimeService{
         try {
             CardQuery response =
                     DefaultMetods.postRequestByClass(
-                            AnimeQueries.ReceberAnimesEmTrend(page, paginas),
+                            this.queries.ReceberAnimesEmTrend(page, paginas),
                             CardQuery.class);
             return response.getData().getPage();
         } catch (Exception e){

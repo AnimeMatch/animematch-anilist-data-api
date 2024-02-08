@@ -23,8 +23,9 @@ public class AnimeController {
     private static final String url =  "https://graphql.anilist.co";
     @Autowired
     private RestTemplate restTemplate;
-    @Autowired
-    private AnimeService service;
+//    @Autowired
+//    private AnimeService service;
+    AnimeService service = new AnimeService();
 
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Recebimento de anime bem-sucedido",
