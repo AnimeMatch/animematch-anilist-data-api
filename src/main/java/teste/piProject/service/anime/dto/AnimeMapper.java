@@ -15,7 +15,7 @@ public class AnimeMapper {
         return animeCriado;
     }
 
-    public static AnimeCompletoDto createAnimeCompleto(AnimeDadosComplementaresDto complementar, AnimeMedia anime){
+    public static AnimeCompletoDto createAnimeCompleto(DadosComplementaresDto complementar, AnimeMedia anime){
         AnimeCompletoDto animeResponse = new AnimeCompletoDto(
                 anime.getId(),
                 anime.getAverageScore(),

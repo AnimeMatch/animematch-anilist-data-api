@@ -1,11 +1,11 @@
-package teste.piProject.service.manga;
+package teste.piProject.service.manga.dto;
 
 import teste.piProject.domain.*;
 import teste.piProject.service.anime.dto.Studios;
 
 import java.util.List;
 
-public class MangaMedia {
+public class MangaCompletoDto {
     private int id;
     private int averageScore;
     private String type;
@@ -22,11 +22,14 @@ public class MangaMedia {
     private Studios studios;
     private Characters characters;
     private List<Plataforma> externalLinks;
+    private int like;
+    private int deslike;
+    private int views;
 
-    public MangaMedia() {
+    public MangaCompletoDto() {
     }
 
-    public MangaMedia(int id, int averageScore, String type, String format, int chapters, int volumes, String status, StartEndDate startDate, StartEndDate endDate, List<String> genres, Titulo title, CoverImage coverImage, String description, Studios studios, Characters characters, List<Plataforma> externalLinks) {
+    public MangaCompletoDto(int id, int averageScore, String type, String format, int chapters, int volumes, String status, StartEndDate startDate, StartEndDate endDate, List<String> genres, Titulo title, CoverImage coverImage, String description, Studios studios, Characters characters, List<Plataforma> externalLinks, int like, int deslike, int views) {
         this.id = id;
         this.averageScore = averageScore;
         this.type = type;
@@ -43,6 +46,9 @@ public class MangaMedia {
         this.studios = studios;
         this.characters = characters;
         this.externalLinks = externalLinks;
+        this.like = like;
+        this.deslike = deslike;
+        this.views = views;
     }
 
     public int getId() {
@@ -171,5 +177,29 @@ public class MangaMedia {
 
     public void setExternalLinks(List<Plataforma> externalLinks) {
         this.externalLinks = externalLinks;
+    }
+
+    public int getLike() {
+        return like;
+    }
+
+    public void setLike(int like) {
+        this.like = like;
+    }
+
+    public int getDeslike() {
+        return deslike;
+    }
+
+    public void setDeslike(int deslike) {
+        this.deslike = deslike;
+    }
+
+    public int getViews() {
+        return views;
+    }
+
+    public void setViews(int views) {
+        this.views = views;
     }
 }

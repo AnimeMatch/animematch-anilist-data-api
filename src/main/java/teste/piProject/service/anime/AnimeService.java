@@ -21,12 +21,12 @@ public class AnimeService{
     public AnimeCompletoDto requestAnime(Integer animeId){
         AnimeQuery response =
                 DefaultMetods.postRequestByClass(
-                        this.queries.buscaAnime(animeId),
+                        this.queries.buscaMidia(animeId),
                         AnimeQuery.class);
         if (response != null) {
             AnimeMedia res = response.getData().getmedia();
             try{
-                AnimeDadosComplementaresDto dadosComplementares =
+                DadosComplementaresDto dadosComplementares =
                         receberDadosComplementaresAnime(animeId);
                 AnimeCompletoDto anime = AnimeMapper.createAnimeCompleto(
                         dadosComplementares,
@@ -42,11 +42,11 @@ public class AnimeService{
         }
     }
 
-    public AnimeDadosComplementaresDto receberDadosComplementaresAnime(int id){
+    public DadosComplementaresDto receberDadosComplementaresAnime(int id){
         String url = "http://localhost:8080/anime/dados-complementares?id={id}";
-        AnimeDadosComplementaresDto response =
+        DadosComplementaresDto response =
                 DefaultMetods.getRequestByClass(
-                        AnimeDadosComplementaresDto.class,
+                        DadosComplementaresDto.class,
                         url,
                         id);
         if (response != null) {
@@ -96,7 +96,7 @@ public class AnimeService{
         try {
             CardQuery response =
                 DefaultMetods.postRequestByClass(
-                        this.queries.buscaAnimePeloNome(tituloBusca, page, paginas),
+                        this.queries.buscaMidiaPeloNome(tituloBusca, page, paginas),
                         CardQuery.class);
             return response.getData().getPage();
         } catch (Exception e){
