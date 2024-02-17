@@ -3,16 +3,16 @@ package teste.piProject.domain;
 import java.util.List;
 
 public class Characters {
-    private List<NodeCharacter> nodes;
+    private List<Node> nodes;
 
     public Characters() {
     }
 
-    public List<NodeCharacter> getNodes() {
+    public List<Node> getNodes() {
         return nodes;
     }
 
-    public void setNodes(List<NodeCharacter> nodes) {
+    public void setNodes(List<Node> nodes) {
         this.nodes = nodes;
     }
 }

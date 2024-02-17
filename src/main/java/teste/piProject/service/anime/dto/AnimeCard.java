@@ -7,7 +7,6 @@ import teste.piProject.domain.Titulo;
 import java.util.List;
 
 public class AnimeCard {
-
     private int id;
     private String format;
     private String status;
