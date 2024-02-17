@@ -1,5 +1,7 @@
 package teste.piProject.service.anime.dto;
 
+import teste.piProject.domain.Name;
+
 import java.util.List;
 
 public class Studios {

@@ -1,34 +1,26 @@
 package teste.piProject.service.anime;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
 import teste.piProject.domain.Page;
 import teste.piProject.service.anime.dto.*;
-import teste.piProject.service.midia.MidiaService;
 import teste.piProject.util.DefaultMetods;
-import teste.piProject.service.queries.Queries;
-
-import static teste.piProject.util.Types.TypeMedia.ANIME;
+import teste.piProject.service.anime.queries.AnimeQueries;
+import java.util.Map;
 
 @Service
 public class AnimeService{
-    private Queries queries;
-
-    public AnimeService() {
-        this.queries = new Queries(ANIME);
-    }
-
     public AnimeCompletoDto requestAnime(Integer animeId){
         AnimeQuery response =
                 DefaultMetods.postRequestByClass(
-                        this.queries.buscaAnime(animeId),
+                        AnimeQueries.buscaAnime(animeId),
                         AnimeQuery.class);
         if (response != null) {
             AnimeMedia res = response.getData().getmedia();
             try{
-                MidiaDadosComplementaresDto dadosComplementares =
+                AnimeDadosComplementaresDto dadosComplementares =
                         receberDadosComplementaresAnime(animeId);
                 AnimeCompletoDto anime = AnimeMapper.createAnimeCompleto(
                         dadosComplementares,
@@ -44,11 +36,11 @@ public class AnimeService{
         }
     }
 
-    public MidiaDadosComplementaresDto receberDadosComplementaresAnime(int id){
+    public AnimeDadosComplementaresDto receberDadosComplementaresAnime(int id){
         String url = "http://localhost:8080/anime/dados-complementares?id={id}";
-        MidiaDadosComplementaresDto response =
+        AnimeDadosComplementaresDto response =
                 DefaultMetods.getRequestByClass(
-                        MidiaDadosComplementaresDto.class,
+                        AnimeDadosComplementaresDto.class,
                         url,
                         id);
         if (response != null) {
@@ -59,10 +51,9 @@ public class AnimeService{
     }
 
     public ResponseEntity<Page> cardAnimesDaTemporada(Integer page, Integer qtdPaginas){
-
         CardQuery response =
                 DefaultMetods.postRequestByClass(
-                        this.queries.animeSeason(page, qtdPaginas),
+                        AnimeQueries.animeSeason(page, qtdPaginas),
                         CardQuery.class);
         if (response != null) {
             Page res = response.getData().getPage();
@@ -85,20 +76,20 @@ public class AnimeService{
         }
     }
 
-//    public AnimeParaSalvarDto animeParaSalvar(Integer idApi){
-//        try {
-//            AnimeCompletoDto anime = this.requestAnime(idApi);
-//            return AnimeMapper.animeParaSalvar(anime);
-//        } catch (Exception e){
-//            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "%s".formatted(e));
-//        }
-//    }
+    public AnimeParaSalvarDto animeParaSalvar(Integer idApi){
+        try {
+            AnimeCompletoDto anime = this.requestAnime(idApi);
+            return AnimeMapper.animeParaSalvar(anime);
+        } catch (Exception e){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "%s".formatted(e));
+        }
+    }
 
     public Page searchAnime(String tituloBusca, int page, int paginas){
         try {
             CardQuery response =
                 DefaultMetods.postRequestByClass(
-                        this.queries.buscaAnimePeloNome(tituloBusca, page, paginas),
+                    AnimeQueries.buscaAnimePeloNome(tituloBusca, page, paginas),
                         CardQuery.class);
             return response.getData().getPage();
         } catch (Exception e){
@@ -110,20 +101,8 @@ public class AnimeService{
         try {
             CardQuery response =
                 DefaultMetods.postRequestByClass(
-                        this.queries.buscaPeloGenero(generos, page, paginas),
+                    AnimeQueries.buscaPeloGenero(generos, page, paginas),
                         CardQuery.class);
-            return response.getData().getPage();
-        } catch (Exception e){
-            throw e;
-        }
-    }
-
-    public Page getAnimesEmTrend(int page, int paginas){
-        try {
-            CardQuery response =
-                    DefaultMetods.postRequestByClass(
-                            this.queries.ReceberAnimesEmTrend(page, paginas),
-                            CardQuery.class);
             return response.getData().getPage();
         } catch (Exception e){
             throw e;
