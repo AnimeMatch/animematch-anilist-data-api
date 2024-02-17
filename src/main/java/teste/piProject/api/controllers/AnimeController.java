@@ -58,16 +58,16 @@ public class AnimeController {
         return ResponseEntity.status(response.getStatusCode()).body(response.getBody());
     }
 
-    @GetMapping("/anime-para-salvar/{idApi}")
-    public ResponseEntity<AnimeParaSalvarDto> getAnimeParaSalvar(@PathVariable String idApi){
-        AnimeParaSalvarDto anime = null;
-        try {
-           anime = service.animeParaSalvar(Integer.parseInt(idApi));
-        } catch (Exception e){
-            throw e;
-        }
-        return ResponseEntity.status(200).body(anime);
-    }
+//    @GetMapping("/anime-para-salvar/{idApi}")
+//    public ResponseEntity<AnimeParaSalvarDto> getAnimeParaSalvar(@PathVariable String idApi){
+//        AnimeParaSalvarDto anime = null;
+//        try {
+//           anime = service.animeParaSalvar(Integer.parseInt(idApi));
+//        } catch (Exception e){
+//            throw e;
+//        }
+//        return ResponseEntity.status(200).body(anime);
+//    }
 
     @GetMapping("/cards/search")
     public ResponseEntity<Page> getSearch(@RequestParam String tituloBusca, @RequestParam int page, @RequestParam int qtdPaginas){

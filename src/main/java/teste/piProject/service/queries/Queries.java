@@ -4,12 +4,8 @@ import teste.piProject.util.DateDetails;
 import teste.piProject.util.DefaultMetods;
 
 import java.util.Map;
-
+import static teste.piProject.util.Types.TypeMedia;
 public class Queries {
-    public enum TypeMedia {
-        ANIME,
-        MANGA
-    }
 
     private TypeMedia typeMedia;
 
