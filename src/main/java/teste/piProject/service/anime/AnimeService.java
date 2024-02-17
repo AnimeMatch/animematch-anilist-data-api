@@ -5,10 +5,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import teste.piProject.domain.Page;
 import teste.piProject.service.anime.dto.*;
+import teste.piProject.service.midia.MidiaService;
 import teste.piProject.util.DefaultMetods;
 import teste.piProject.service.queries.Queries;
 
-import static teste.piProject.service.queries.Queries.TypeMedia.ANIME;
+import static teste.piProject.util.Types.TypeMedia.ANIME;
 
 @Service
 public class AnimeService{
@@ -83,14 +84,14 @@ public class AnimeService{
         }
     }
 
-    public AnimeParaSalvarDto animeParaSalvar(Integer idApi){
-        try {
-            AnimeCompletoDto anime = this.requestAnime(idApi);
-            return AnimeMapper.animeParaSalvar(anime);
-        } catch (Exception e){
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "%s".formatted(e));
-        }
-    }
+//    public AnimeParaSalvarDto animeParaSalvar(Integer idApi){
+//        try {
+//            AnimeCompletoDto anime = this.requestAnime(idApi);
+//            return AnimeMapper.animeParaSalvar(anime);
+//        } catch (Exception e){
+//            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "%s".formatted(e));
+//        }
+//    }
 
     public Page searchAnime(String tituloBusca, int page, int paginas){
         try {

@@ -12,7 +12,7 @@ import teste.piProject.service.manga.dto.MangaQuery;
 import teste.piProject.service.queries.Queries;
 import teste.piProject.util.DefaultMetods;
 
-import static teste.piProject.service.queries.Queries.TypeMedia.MANGA;
+import static teste.piProject.util.Types.TypeMedia.MANGA;
 
 @Service
 public class MangaService {
