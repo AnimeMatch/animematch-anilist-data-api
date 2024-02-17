@@ -1,12 +1,20 @@
-package teste.piProject.service.anime.queries;
+package teste.piProject.service.queries;
 
 import teste.piProject.util.DateDetails;
 import teste.piProject.util.DefaultMetods;
 
 import java.util.Map;
+import static teste.piProject.util.Types.TypeMedia;
+public class Queries {
 
-public class AnimeQueries {
-    public static Map<String, String> buscaAnime(Integer id){
+    private TypeMedia typeMedia;
+
+    public Queries(TypeMedia typeMedia) {
+        this.typeMedia = typeMedia;
+    }
+
+    public Map<String, String> buscaAnime(Integer id){
+        String contenty = this.typeMedia == TypeMedia.ANIME ? "episodes" : "    chapters\n    volumes";
         String body = "query \n" +
                 "{\n" +
                 "    Media (type: ANIME, id: %d){\n".formatted(id) +
@@ -14,7 +22,7 @@ public class AnimeQueries {
                 "    averageScore\n" +
                 "    type\n" +
                 "    format\n" +
-                "   \tepisodes     \n" +
+                contenty +
                 "    status\n" +
                 "    startDate {\n" +
                 "      year\n" +
@@ -65,7 +73,7 @@ public class AnimeQueries {
         return DefaultMetods.query(body);
     }
 
-    public static Map<String, String> animeSeason(Integer pagina, Integer porPagina){
+    public Map<String, String> animeSeason(Integer pagina, Integer porPagina){
         String body = "query\n" +
                 "{\n" +
                 "  Page (page: %d, perPage: %d) {\n".formatted(pagina, porPagina) +
@@ -107,7 +115,7 @@ public class AnimeQueries {
 //
 //    }
 
-    public static Map<String, String> buscaAnimePeloNome(String tituloBusca, Integer pagina, Integer porPagina){
+    public Map<String, String> buscaAnimePeloNome(String tituloBusca, Integer pagina, Integer porPagina){
         String body = "query\n" +
                 "{\n" +
                 "  Page (page: %d, perPage: %d) {\n".formatted(pagina, porPagina) +
@@ -144,7 +152,7 @@ public class AnimeQueries {
         return DefaultMetods.query(body);
     }
 
-    public static Map<String, String> buscaPeloGenero(String generoBusca, Integer pagina, Integer porPagina){
+    public Map<String, String> buscaPeloGenero(String generoBusca, Integer pagina, Integer porPagina){
         String uri;
         if (generoBusca == "") {
             uri =  "    media (type: ANIME, sort: POPULARITY_DESC){\n";
@@ -163,6 +171,44 @@ public class AnimeQueries {
                 "        }\n" +
                 "\n" +
                 uri +
+                "      id\n" +
+                "      averageScore\n" +
+                "      type\n" +
+                "      format\n" +
+                "      status\n" +
+                "      startDate {\n" +
+                "        year\n" +
+                "        month\n" +
+                "        day\n" +
+                "      }\n" +
+                "      title{\n" +
+                "        romaji\n" +
+                "        english\n" +
+                "      }\n" +
+                "      coverImage {\n" +
+                "        extraLarge\n" +
+                "        large\n" +
+                "      }\n" +
+                "    }\n" +
+                "  }\n" +
+                "}";
+        return DefaultMetods.query(body);
+    }
+
+    public Map<String, String> ReceberAnimesEmTrend(Integer pagina, Integer porPagina){
+        String filtro = "    media (type: ANIME, sort: [TRENDING_DESC, POPULARITY_DESC]){\n";
+        String body = "query\n" +
+                "{\n" +
+                "  Page (page: %d, perPage: %d) {\n".formatted(pagina, porPagina) +
+                "        pageInfo {\n" +
+                "            total\n" +
+                "            currentPage\n" +
+                "            lastPage\n" +
+                "            hasNextPage\n" +
+                "            perPage\n" +
+                "        }\n" +
+                "\n" +
+                filtro +
                 "      id\n" +
                 "      averageScore\n" +
                 "      type\n" +

@@ -23,8 +23,9 @@ public class AnimeController {
     private static final String url =  "https://graphql.anilist.co";
     @Autowired
     private RestTemplate restTemplate;
-    @Autowired
-    private AnimeService service;
+//    @Autowired
+//    private AnimeService service;
+    AnimeService service = new AnimeService();
 
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Recebimento de anime bem-sucedido",
@@ -57,16 +58,16 @@ public class AnimeController {
         return ResponseEntity.status(response.getStatusCode()).body(response.getBody());
     }
 
-    @GetMapping("/anime-para-salvar/{idApi}")
-    public ResponseEntity<AnimeParaSalvarDto> getAnimeParaSalvar(@PathVariable String idApi){
-        AnimeParaSalvarDto anime = null;
-        try {
-           anime = service.animeParaSalvar(Integer.parseInt(idApi));
-        } catch (Exception e){
-            throw e;
-        }
-        return ResponseEntity.status(200).body(anime);
-    }
+//    @GetMapping("/anime-para-salvar/{idApi}")
+//    public ResponseEntity<AnimeParaSalvarDto> getAnimeParaSalvar(@PathVariable String idApi){
+//        AnimeParaSalvarDto anime = null;
+//        try {
+//           anime = service.animeParaSalvar(Integer.parseInt(idApi));
+//        } catch (Exception e){
+//            throw e;
+//        }
+//        return ResponseEntity.status(200).body(anime);
+//    }
 
     @GetMapping("/cards/search")
     public ResponseEntity<Page> getSearch(@RequestParam String tituloBusca, @RequestParam int page, @RequestParam int qtdPaginas){
@@ -77,6 +78,12 @@ public class AnimeController {
     @GetMapping("/cards/genero")
     public ResponseEntity<Page> getAnimesPorGenero(@RequestParam String genero, @RequestParam int page, @RequestParam int qtdPaginas){
         Page animes = service.getAnimesPeloGenero(genero, page, qtdPaginas);
+        return ResponseEntity.status(200).body(animes);
+    }
+
+    @GetMapping("/cards/em-trend")
+    public ResponseEntity<Page> getAnimesEmTrend(@RequestParam int page, @RequestParam int qtdPaginas) {
+        Page animes = service.getAnimesEmTrend(page, qtdPaginas);
         return ResponseEntity.status(200).body(animes);
     }
 }
