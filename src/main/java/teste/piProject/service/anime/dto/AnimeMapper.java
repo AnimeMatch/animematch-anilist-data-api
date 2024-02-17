@@ -1,6 +1,9 @@
 package teste.piProject.service.anime.dto;
 
 import teste.piProject.service.anime.AnimeMedia;
+import teste.piProject.service.midia.dto.MidiaMedia;
+import teste.piProject.service.midia.dto.MidiaParaSalvarDto;
+import teste.piProject.service.midia.dto.MidiaQuery;
 
 import java.util.Map;
 
@@ -15,7 +18,7 @@ public class AnimeMapper {
         return animeCriado;
     }
 
-    public static AnimeCompletoDto createAnimeCompleto(AnimeDadosComplementaresDto complementar, AnimeMedia anime){
+    public static AnimeCompletoDto createAnimeCompleto(MidiaDadosComplementaresDto complementar, AnimeMedia anime){
         AnimeCompletoDto animeResponse = new AnimeCompletoDto(
                 anime.getId(),
                 anime.getAverageScore(),
@@ -39,13 +42,23 @@ public class AnimeMapper {
         return animeResponse;
     }
 
-    public static AnimeParaSalvarDto animeParaSalvar(AnimeCompletoDto anime){
-        final AnimeParaSalvarDto animeResponse = new AnimeParaSalvarDto(
-                anime.getId(),
-                anime.getTitle().getEnglish(),
-                anime.getAverageScore(),
-                anime.getCoverImage().getExtraLarge()
+    public static MidiaParaSalvarDto midiaParaSalvar(MidiaMedia midia){
+        final MidiaParaSalvarDto midiaResponse = new MidiaParaSalvarDto(
+                midia.getId(),
+                midia.getTitle().getEnglish(),
+                midia.getAverageScore(),
+                midia.getCoverImage().getExtraLarge()
         );
-        return animeResponse;
+        return midiaResponse;
     }
+
+//    public static MidiaParaSalvarDto midiaParaSalvar(AnimeCompletoDto anime){
+//        final MidiaParaSalvarDto animeResponse = new MidiaParaSalvarDto(
+//                anime.getId(),
+//                anime.getTitle().getEnglish(),
+//                anime.getAverageScore(),
+//                anime.getCoverImage().getExtraLarge()
+//        );
+//        return animeResponse;
+//    }
 }
