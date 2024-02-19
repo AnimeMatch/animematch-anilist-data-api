@@ -40,24 +40,4 @@ public class AnimeMapper {
         );
         return animeResponse;
     }
-
-    public static MidiaParaSalvarDto midiaParaSalvar(MidiaMedia midia){
-        final MidiaParaSalvarDto midiaResponse = new MidiaParaSalvarDto(
-                midia.getId(),
-                midia.getTitle().getEnglish(),
-                midia.getAverageScore(),
-                midia.getCoverImage().getExtraLarge()
-        );
-        return midiaResponse;
-    }
-
-//    public static MidiaParaSalvarDto midiaParaSalvar(AnimeCompletoDto anime){
-//        final MidiaParaSalvarDto animeResponse = new MidiaParaSalvarDto(
-//                anime.getId(),
-//                anime.getTitle().getEnglish(),
-//                anime.getAverageScore(),
-//                anime.getCoverImage().getExtraLarge()
-//        );
-//        return animeResponse;
-//    }
 }

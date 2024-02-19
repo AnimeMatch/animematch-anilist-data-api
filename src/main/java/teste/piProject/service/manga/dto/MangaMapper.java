@@ -1,9 +1,5 @@
 package teste.piProject.service.manga.dto;
 
-import teste.piProject.service.anime.AnimeMedia;
-import teste.piProject.service.anime.dto.AnimeCompletoDto;
-import teste.piProject.service.anime.dto.AnimeParaSalvarDto;
-import teste.piProject.service.anime.dto.AnimeSimplesDto;
 import teste.piProject.service.anime.dto.DadosComplementaresDto;
 import teste.piProject.service.manga.MangaMedia;
 
@@ -43,15 +39,5 @@ public class MangaMapper {
                 complementar.getView()
         );
         return mangaResponse;
-    }
-
-    public static AnimeParaSalvarDto animeParaSalvar(AnimeCompletoDto anime){
-        final AnimeParaSalvarDto animeResponse = new AnimeParaSalvarDto(
-                anime.getId(),
-                anime.getTitle().getEnglish(),
-                anime.getAverageScore(),
-                anime.getCoverImage().getExtraLarge()
-        );
-        return animeResponse;
     }
 }

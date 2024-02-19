@@ -9,12 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import teste.piProject.domain.Page;
-import teste.piProject.service.anime.AnimeMedia;
 import teste.piProject.service.anime.AnimeService;
 import teste.piProject.service.anime.dto.AnimeCompletoDto;
-import teste.piProject.service.anime.dto.AnimeParaSalvarDto;
-
-import java.util.Map;
 
 @RestController
 @RequestMapping("/animes")

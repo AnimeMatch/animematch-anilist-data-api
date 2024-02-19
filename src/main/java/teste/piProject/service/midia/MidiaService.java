@@ -9,7 +9,6 @@ import teste.piProject.service.anime.AnimeService;
 import teste.piProject.service.anime.dto.AnimeCompletoDto;
 import teste.piProject.service.anime.dto.AnimeMapper;
 import teste.piProject.service.anime.dto.AnimeQuery;
-import teste.piProject.service.anime.dto.MidiaDadosComplementaresDto;
 import teste.piProject.service.midia.dto.MidiaMedia;
 import teste.piProject.service.midia.dto.MidiaParaSalvarDto;
 import teste.piProject.service.midia.dto.MidiaQuery;
@@ -43,10 +42,21 @@ public class MidiaService {
                             MidiaQueries.buscaMidia(idApi),
                             MidiaQuery.class);
 //            AnimeCompletoDto midia = this.requestMidia(idApi);
-            return AnimeMapper.midiaParaSalvar(midia.getData().getMedia());
+            return this.format(midia.getData().getMedia());
         } catch (Exception e){
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "%s".formatted(e));
         }
+    }
+
+    public static MidiaParaSalvarDto format(MidiaMedia midia){
+        final MidiaParaSalvarDto midiaResponse = new MidiaParaSalvarDto(
+                midia.getId(),
+                midia.getTitle().getEnglish(),
+                midia.getAverageScore(),
+                midia.getCoverImage().getExtraLarge(),
+                midia.getType()
+        );
+        return midiaResponse;
     }
 //
 //    public AnimeCompletoDto requestMidia(Integer idApi){

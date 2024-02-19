@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import teste.piProject.service.anime.dto.AnimeParaSalvarDto;
 import teste.piProject.service.midia.MidiaService;
 import teste.piProject.service.midia.dto.MidiaParaSalvarDto;
 
@@ -16,7 +15,7 @@ public class MidiaController {
     @Autowired
     private MidiaService service;
     @GetMapping("/midia-para-salvar/{idApi}")
-    public ResponseEntity<MidiaParaSalvarDto> getMidaiParaSalvar(@PathVariable String idApi){
+    public ResponseEntity<MidiaParaSalvarDto> getMidiaParaSalvar(@PathVariable String idApi){
         MidiaParaSalvarDto anime = null;
         try {
             anime = service.midiaParaSalvar(Integer.parseInt(idApi));
