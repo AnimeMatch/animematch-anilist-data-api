@@ -4,18 +4,12 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
-import teste.piProject.domain.Page;
-import teste.piProject.service.anime.AnimeService;
 import teste.piProject.service.anime.dto.AnimeCompletoDto;
 import teste.piProject.service.manga.MangaPage;
 import teste.piProject.service.manga.MangaService;
 import teste.piProject.service.manga.dto.MangaCompletoDto;
-
-import java.util.Map;
 
 @RestController
 @RequestMapping("/mangas")
@@ -46,4 +40,21 @@ public class MangaController {
         return ResponseEntity.status(response.getStatusCode()).body(response.getBody());
     }
 
+    @GetMapping("/cards/search")
+    public ResponseEntity<MangaPage> getSearch(@RequestParam String tituloBusca, @RequestParam int page, @RequestParam int qtdPaginas){
+        MangaPage mangas = service.searchManga(tituloBusca, page, qtdPaginas);
+        return ResponseEntity.status(200).body(mangas);
+    }
+
+    @GetMapping("/cards/genero")
+    public ResponseEntity<MangaPage> getMangasPorGenero(@RequestParam String genero, @RequestParam int page, @RequestParam int qtdPaginas){
+        MangaPage animes = service.getMangasPeloGenero(genero, page, qtdPaginas);
+        return ResponseEntity.status(200).body(animes);
+    }
+
+    @GetMapping("/cards/em-trend")
+    public ResponseEntity<MangaPage> getMangasEmTrend(@RequestParam int page, @RequestParam int qtdPaginas) {
+        MangaPage animes = service.getMangasEmTrend(page, qtdPaginas);
+        return ResponseEntity.status(200).body(animes);
+    }
 }

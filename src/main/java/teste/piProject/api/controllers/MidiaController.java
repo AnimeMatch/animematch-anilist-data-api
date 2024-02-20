@@ -16,12 +16,12 @@ public class MidiaController {
     private MidiaService service;
     @GetMapping("/midia-para-salvar/{idApi}")
     public ResponseEntity<MidiaParaSalvarDto> getMidiaParaSalvar(@PathVariable String idApi){
-        MidiaParaSalvarDto anime = null;
+        MidiaParaSalvarDto midia = null;
         try {
-            anime = service.midiaParaSalvar(Integer.parseInt(idApi));
+            midia = service.midiaParaSalvar(Integer.parseInt(idApi));
         } catch (Exception e){
             throw e;
         }
-        return ResponseEntity.status(200).body(anime);
+        return ResponseEntity.status(200).body(midia);
     }
 }

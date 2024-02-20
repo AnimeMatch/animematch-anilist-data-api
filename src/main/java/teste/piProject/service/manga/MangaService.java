@@ -4,11 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import teste.piProject.domain.Page;
-import teste.piProject.service.anime.dto.AnimeCompletoDto;
-import teste.piProject.service.anime.dto.CardQuery;
 import teste.piProject.service.anime.dto.DadosComplementaresDto;
-import teste.piProject.service.anime.dto.AnimeMapper;
 import teste.piProject.service.manga.dto.*;
 import teste.piProject.service.queries.Queries;
 import teste.piProject.util.DefaultMetods;
@@ -85,6 +81,42 @@ public class MangaService {
             return response;
         }else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    public MangaPage searchManga(String tituloBusca, int page, int qtdPaginas){
+        try {
+            CardMangaQuery response =
+                    DefaultMetods.postRequestByClass(
+                            this.queries.buscaMidiaPeloNome(tituloBusca, page, qtdPaginas),
+                            CardMangaQuery.class);
+            return response.getData().getPage();
+        } catch (Exception e){
+            throw e;
+        }
+    }
+
+    public MangaPage getMangasPeloGenero(String genero, int page, int qtdPaginas){
+        try {
+            CardMangaQuery response =
+                    DefaultMetods.postRequestByClass(
+                            this.queries.buscaPeloGenero(genero, page, qtdPaginas),
+                            CardMangaQuery.class);
+            return response.getData().getPage();
+        } catch (Exception e){
+            throw e;
+        }
+    }
+
+    public MangaPage getMangasEmTrend(int page, int qtdPaginas){
+        try {
+            CardMangaQuery response =
+                    DefaultMetods.postRequestByClass(
+                            this.queries.ReceberAnimesEmTrend(page, qtdPaginas),
+                            CardMangaQuery.class);
+            return response.getData().getPage();
+        } catch (Exception e){
+            throw e;
         }
     }
 }

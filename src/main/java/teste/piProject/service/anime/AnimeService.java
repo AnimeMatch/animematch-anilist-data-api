@@ -3,9 +3,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import teste.piProject.domain.Page;
+import teste.piProject.service.anime.dto.AnimePage;
 import teste.piProject.service.anime.dto.*;
-import teste.piProject.service.midia.MidiaService;
 import teste.piProject.util.DefaultMetods;
 import teste.piProject.service.queries.Queries;
 
@@ -57,32 +56,32 @@ public class AnimeService{
         }
     }
 
-    public ResponseEntity<Page> cardAnimesDaTemporada(Integer page, Integer qtdPaginas){
+    public ResponseEntity<AnimePage> cardAnimesDaTemporada(Integer page, Integer qtdPaginas){
 
-        CardQuery response =
+        CardAnimeQuery response =
                 DefaultMetods.postRequestByClass(
                         this.queries.animeSeason(page, qtdPaginas),
-                        CardQuery.class);
+                        CardAnimeQuery.class);
         if (response != null) {
-            Page res = response.getData().getPage();
+            AnimePage res = response.getData().getPage();
             return ResponseEntity.status(200).body(res);
         }else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
-    public ResponseEntity<Page> cardAnimesMaisCurtidos(){
-        String url = "https://localhost:8080/anime/mais-curtidoscurtidos";
-        CardQuery response =
-                DefaultMetods.getRequestByClass(
-                        CardQuery.class,
-                        url);
-        if (response != null) {
-            Page res = response.getData().getPage();
-            return ResponseEntity.status(200).body(res);
-        }else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
-    }
+//    public ResponseEntity<Page> cardAnimesMaisCurtidos(){
+//        String url = "https://localhost:8080/anime/mais-curtidoscurtidos";
+//        CardQuery response =
+//                DefaultMetods.getRequestByClass(
+//                        CardQuery.class,
+//                        url);
+//        if (response != null) {
+//            Page res = response.getData().getPage();
+//            return ResponseEntity.status(200).body(res);
+//        }else {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+//        }
+//    }
 
 //    public AnimeParaSalvarDto animeParaSalvar(Integer idApi){
 //        try {
@@ -93,36 +92,36 @@ public class AnimeService{
 //        }
 //    }
 
-    public Page searchAnime(String tituloBusca, int page, int paginas){
+    public AnimePage searchAnime(String tituloBusca, int page, int qtdPaginas){
         try {
-            CardQuery response =
+            CardAnimeQuery response =
                 DefaultMetods.postRequestByClass(
-                        this.queries.buscaMidiaPeloNome(tituloBusca, page, paginas),
-                        CardQuery.class);
+                        this.queries.buscaMidiaPeloNome(tituloBusca, page, qtdPaginas),
+                        CardAnimeQuery.class);
             return response.getData().getPage();
         } catch (Exception e){
             throw e;
         }
     }
 
-    public Page getAnimesPeloGenero(String generos, int page, int paginas){
+    public AnimePage getAnimesPeloGenero(String genero, int page, int qtdPaginas){
         try {
-            CardQuery response =
+            CardAnimeQuery response =
                 DefaultMetods.postRequestByClass(
-                        this.queries.buscaPeloGenero(generos, page, paginas),
-                        CardQuery.class);
+                        this.queries.buscaPeloGenero(genero, page, qtdPaginas),
+                        CardAnimeQuery.class);
             return response.getData().getPage();
         } catch (Exception e){
             throw e;
         }
     }
 
-    public Page getAnimesEmTrend(int page, int paginas){
+    public AnimePage getAnimesEmTrend(int page, int qtdPaginas){
         try {
-            CardQuery response =
+            CardAnimeQuery response =
                     DefaultMetods.postRequestByClass(
-                            this.queries.ReceberAnimesEmTrend(page, paginas),
-                            CardQuery.class);
+                            this.queries.ReceberAnimesEmTrend(page, qtdPaginas),
+                            CardAnimeQuery.class);
             return response.getData().getPage();
         } catch (Exception e){
             throw e;
