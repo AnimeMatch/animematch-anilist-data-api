@@ -14,7 +14,7 @@ public class Queries {
     }
 
     public Map<String, String> buscaMidia(Integer id){
-        String contenty = this.typeMedia == TypeMedia.ANIME ? "episodes" : "    chapters\n    volumes";
+        String contenty = this.typeMedia == TypeMedia.ANIME ? "    episodes\n" : "    chapters\n    volumes";
         String body = "query \n" +
                 "{\n" +
                 "    Media (type: %s, id: %d){\n".formatted(this.typeMedia, id) +

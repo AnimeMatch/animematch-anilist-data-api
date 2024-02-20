@@ -19,31 +19,36 @@ public class AnimeService{
     }
 
     public AnimeCompletoDto requestAnime(Integer animeId){
-        AnimeQuery response =
-                DefaultMetods.postRequestByClass(
-                        this.queries.buscaMidia(animeId),
-                        AnimeQuery.class);
-        if (response != null) {
-            AnimeMedia res = response.getData().getmedia();
-            try{
-                DadosComplementaresDto dadosComplementares =
-                        receberDadosComplementaresAnime(animeId);
-                AnimeCompletoDto anime = AnimeMapper.createAnimeCompleto(
-                        dadosComplementares,
-                        res);
-                return anime;
-            }catch (Exception e){
-                throw new ResponseStatusException(
-                        HttpStatus.INTERNAL_SERVER_ERROR,
-                        "Erro ao consultar dados de vizualisação, like e deslike");
+        try{
+            AnimeQuery response =
+                    DefaultMetods.postRequestByClass(
+                            this.queries.buscaMidia(animeId),
+                            AnimeQuery.class);
+            if (response != null) {
+                AnimeMedia res = response.getData().getmedia();
+                try{
+                    DadosComplementaresDto dadosComplementares =
+                            receberDadosComplementaresAnime(animeId);
+                    AnimeCompletoDto anime = AnimeMapper.createAnimeCompleto(
+                            dadosComplementares,
+                            res);
+                    return anime;
+                }catch (Exception e){
+                    throw new ResponseStatusException(
+                            HttpStatus.INTERNAL_SERVER_ERROR,
+                            "Erro ao consultar dados de vizualisação, like e deslike");
+                }
+            }else{
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Erro na consulta de animes");
             }
-        }else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Erro na consulta de animes");
+        }catch (Exception e){
+            throw new ResponseStatusException(
+                    HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     public DadosComplementaresDto receberDadosComplementaresAnime(int id){
-        String url = "http://localhost:8080/anime/dados-complementares?id={id}";
+        String url = "http://localhost:8080/midia/dados-complementares?id={id}";
         DadosComplementaresDto response =
                 DefaultMetods.getRequestByClass(
                         DadosComplementaresDto.class,
