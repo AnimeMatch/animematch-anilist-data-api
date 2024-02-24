@@ -8,15 +8,17 @@ public class MidiaMedia {
     private Titulo title;
     private int averageScore;
     private CoverImage coverImage;
+    private String type;
 
     public MidiaMedia() {
     }
 
-    public MidiaMedia(int id, Titulo title, int averageScore, CoverImage coverImage) {
+    public MidiaMedia(int id, Titulo title, int averageScore, CoverImage coverImage, String type) {
         this.id = id;
         this.title = title;
         this.averageScore = averageScore;
         this.coverImage = coverImage;
+        this.type = type;
     }
 
     public int getId() {
@@ -49,5 +51,13 @@ public class MidiaMedia {
 
     public void setCoverImage(CoverImage coverImage) {
         this.coverImage = coverImage;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

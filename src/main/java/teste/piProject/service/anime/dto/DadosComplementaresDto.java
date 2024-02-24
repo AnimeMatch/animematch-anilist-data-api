@@ -1,14 +1,14 @@
 package teste.piProject.service.anime.dto;
 
-public class MidiaDadosComplementaresDto {
+public class DadosComplementaresDto {
     private int like;
     private int deslike;
     private int view;
 
-    public MidiaDadosComplementaresDto() {
+    public DadosComplementaresDto() {
     }
 
-    public MidiaDadosComplementaresDto(int like, int deslike, int view) {
+    public DadosComplementaresDto(int like, int deslike, int view) {
         this.like = like;
         this.deslike = deslike;
         this.view = view;

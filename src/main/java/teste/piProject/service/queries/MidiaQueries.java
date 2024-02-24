@@ -9,7 +9,7 @@ public class MidiaQueries {
     public static Map<String, String> buscaMidia(Integer idApi){
         String body = "query\n" +
                 "{\n" +
-                "  Media (id: 145064){\n" +
+                "  Media (id: %d){\n".formatted(idApi) +
                 "   id\n" +
                 "    title {\n" +
                 "      romaji\n" +
@@ -21,6 +21,7 @@ public class MidiaQueries {
                 "      extraLarge\n" +
                 "      large\n" +
                 "    }\n" +
+                "    type" +
                 "  }\n" +
                 "}";
         return DefaultMetods.query(body);
