@@ -232,4 +232,25 @@ public class Queries {
                 "}";
         return DefaultMetods.query(body);
     }
+
+    public Map<String, String> buscaCharacters(Integer pagina, Integer porPagina){
+        String body = "query{\n" +
+                "  Page (page: %d, perPage: %d) {\n".formatted(pagina, porPagina) +
+                "        pageInfo {\n" +
+                "            total\n" +
+                "            currentPage\n" +
+                "            lastPage\n" +
+                "            hasNextPage\n" +
+                "            perPage\n" +
+                "        }\n" +
+                "  characters (sort:FAVOURITES_DESC){\n" +
+                "    id\n" +
+                "    image {\n" +
+                "      large\n" +
+                "    }\n" +
+                "  }\n" +
+                "}\n" +
+                "}";
+        return DefaultMetods.query(body);
+    }
 }
