@@ -79,9 +79,7 @@ public class AnimeController {
 
     @GetMapping("/cards/em-trend")
     public ResponseEntity<AnimePage> getAnimesEmTrend(@RequestParam int page, @RequestParam int qtdPaginas) {
-        System.out.println("Bateu na trend");
         AnimePage animes = service.getAnimesEmTrend(page, qtdPaginas);
-        System.out.println("Teve retorno");
         return ResponseEntity.status(200).body(animes);
     }
 }
