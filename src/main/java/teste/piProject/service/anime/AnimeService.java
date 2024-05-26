@@ -7,12 +7,14 @@ import teste.piProject.service.anime.dto.AnimePage;
 import teste.piProject.service.anime.dto.*;
 import teste.piProject.util.DefaultMetods;
 import teste.piProject.service.queries.Queries;
+import teste.piProject.util.IPConfig;
 
 import static teste.piProject.util.Types.TypeMedia.ANIME;
 
 @Service
 public class AnimeService{
     private Queries queries;
+    private IPConfig ipConfig = new IPConfig();
 
     public AnimeService() {
         this.queries = new Queries(ANIME);
@@ -43,12 +45,12 @@ public class AnimeService{
             }
         }catch (Exception e){
             throw new ResponseStatusException(
-                    HttpStatus.INTERNAL_SERVER_ERROR);
+                    HttpStatus.INTERNAL_SERVER_ERROR, "%s".formatted(e));
         }
     }
 
     public DadosComplementaresDto receberDadosComplementaresAnime(int id){
-        String url = "http://localhost:8080/midia/dados-complementares?id={id}";
+        String url = "http://%s/midia/dados-complementares?id={id}".formatted(ipConfig.getIpApi());
         DadosComplementaresDto response =
                 DefaultMetods.getRequestByClass(
                         DadosComplementaresDto.class,

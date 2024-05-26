@@ -1,5 +1,8 @@
 package teste.piProject.service.manga;
 
+import org.springframework.beans.factory.InjectionPoint;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -8,12 +11,14 @@ import teste.piProject.service.anime.dto.DadosComplementaresDto;
 import teste.piProject.service.manga.dto.*;
 import teste.piProject.service.queries.Queries;
 import teste.piProject.util.DefaultMetods;
+import teste.piProject.util.IPConfig;
 
 import static teste.piProject.util.Types.TypeMedia.MANGA;
 
 @Service
 public class MangaService {
     private Queries queries;
+    private IPConfig ipConfig = new IPConfig();
 
     public MangaService() {
         this.queries = new Queries(MANGA);
@@ -57,7 +62,7 @@ public class MangaService {
     }
 
     public ResponseEntity<MangaPage> cardMangasMaisCurtidos(){
-        String url = "https://localhost:8080/manga/mais-curtidoscurtidos";
+        String url = "https://%s/manga/mais-curtidoscurtidos".formatted(ipConfig.getIpApi());
         CardMangaQuery response =
                 DefaultMetods.getRequestByClass(
                         CardMangaQuery.class,
@@ -71,7 +76,7 @@ public class MangaService {
     }
 
     public DadosComplementaresDto receberDadosComplementaresManga(int id){
-        String url = "http://localhost:8080/midia/dados-complementares?id={id}";
+        String url = "http://%s/midia/dados-complementares?id={id}".formatted(ipConfig.getIpApi());
         DadosComplementaresDto response =
                 DefaultMetods.getRequestByClass(
                         DadosComplementaresDto.class,
