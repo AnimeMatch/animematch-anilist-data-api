@@ -2,4 +2,4 @@ spring:
   config:
     activate:
       on-profile: dev
-host: localhost:8081
+host: localhost:8080

@@ -8,7 +8,7 @@ public class IPConfig {
         if ("prod".equals(ipApi)) {
             return "api";
         } else {
-            return "localhost:8081";
+            return "localhost:8080";
         }
     }
 }
