@@ -14,4 +14,6 @@ WORKDIR /app
 
 COPY --from=builder /build/target/*.jar /app/app.jar
 
+ENV ENV_API="prod"
+
 CMD ["java", "-jar", "app.jar"]
