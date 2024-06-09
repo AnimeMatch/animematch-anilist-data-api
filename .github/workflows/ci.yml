@@ -45,5 +45,5 @@ jobs:
           tags: lucaslrodrigues/sprint-api-anilist:latest
 
       - name: Trigger CD Workflow
-        if: github.ref == 'refs/heads/main' && success()
-        run: echo "CI passed for main branch"
+        if: github.ref == 'refs/heads/develop' && success()
+        run: echo "CI passed for develop branch"
