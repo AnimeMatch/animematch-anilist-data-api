@@ -1,48 +1,38 @@
 package teste.piProject.service.manga;
 
 import teste.piProject.domain.*;
-import teste.piProject.service.anime.dto.Studios;
 
 import java.util.List;
 
 public class MangaMedia {
     private int id;
-    private int averageScore;
-    private String type;
-    private String format;
-    private int chapters;
-    private int volumes;
+    private Double notaMedia;
+    private String tipoMidia;
+    private String formato;
+    private Integer Capitulos;
     private String status;
-    private StartEndDate startDate;
-    private StartEndDate endDate;
-    private List<String> genres;
-    private Titulo title;
-    private CoverImage coverImage;
-    private String description;
-    private Studios studios;
-    private Characters characters;
-    private List<Plataforma> externalLinks;
+    private StartEndDate dataLancamento;
+    private StartEndDate dataFinalizado;
+    private List<String> generos;
+    private Titulo titulos;
+    private String descricao;
+    private List<Personagem> personagens;
+    private List<Plataforma> linksExternos;
 
-    public MangaMedia() {
-    }
-
-    public MangaMedia(int id, int averageScore, String type, String format, int chapters, int volumes, String status, StartEndDate startDate, StartEndDate endDate, List<String> genres, Titulo title, CoverImage coverImage, String description, Studios studios, Characters characters, List<Plataforma> externalLinks) {
+    public MangaMedia(int id, Double notaMedia, String tipoMidia, String formato, Integer capitulos, String status, StartEndDate dataLancamento, StartEndDate dataFinalizado, List<String> generos, Titulo titulos, String descricao, List<Personagem> personagens, List<Plataforma> linksExternos) {
         this.id = id;
-        this.averageScore = averageScore;
-        this.type = type;
-        this.format = format;
-        this.chapters = chapters;
-        this.volumes = volumes;
+        this.notaMedia = notaMedia;
+        this.tipoMidia = tipoMidia;
+        this.formato = formato;
+        Capitulos = capitulos;
         this.status = status;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.genres = genres;
-        this.title = title;
-        this.coverImage = coverImage;
-        this.description = description;
-        this.studios = studios;
-        this.characters = characters;
-        this.externalLinks = externalLinks;
+        this.dataLancamento = dataLancamento;
+        this.dataFinalizado = dataFinalizado;
+        this.generos = generos;
+        this.titulos = titulos;
+        this.descricao = descricao;
+        this.personagens = personagens;
+        this.linksExternos = linksExternos;
     }
 
     public int getId() {
@@ -53,44 +43,36 @@ public class MangaMedia {
         this.id = id;
     }
 
-    public int getAverageScore() {
-        return averageScore;
+    public Double getNotaMedia() {
+        return notaMedia;
     }
 
-    public void setAverageScore(int averageScore) {
-        this.averageScore = averageScore;
+    public void setNotaMedia(Double notaMedia) {
+        this.notaMedia = notaMedia;
     }
 
-    public String getType() {
-        return type;
+    public String getTipoMidia() {
+        return tipoMidia;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTipoMidia(String tipoMidia) {
+        this.tipoMidia = tipoMidia;
     }
 
-    public String getFormat() {
-        return format;
+    public String getFormato() {
+        return formato;
     }
 
-    public void setFormat(String format) {
-        this.format = format;
+    public void setFormato(String formato) {
+        this.formato = formato;
     }
 
-    public int getChapters() {
-        return chapters;
+    public Integer getCapitulos() {
+        return Capitulos;
     }
 
-    public void setChapters(int chapters) {
-        this.chapters = chapters;
-    }
-
-    public int getVolumes() {
-        return volumes;
-    }
-
-    public void setVolumes(int volumes) {
-        this.volumes = volumes;
+    public void setCapitulos(Integer capitulos) {
+        Capitulos = capitulos;
     }
 
     public String getStatus() {
@@ -101,75 +83,59 @@ public class MangaMedia {
         this.status = status;
     }
 
-    public StartEndDate getStartDate() {
-        return startDate;
+    public StartEndDate getDataLancamento() {
+        return dataLancamento;
     }
 
-    public void setStartDate(StartEndDate startDate) {
-        this.startDate = startDate;
+    public void setDataLancamento(StartEndDate dataLancamento) {
+        this.dataLancamento = dataLancamento;
     }
 
-    public StartEndDate getEndDate() {
-        return endDate;
+    public StartEndDate getDataFinalizado() {
+        return dataFinalizado;
     }
 
-    public void setEndDate(StartEndDate endDate) {
-        this.endDate = endDate;
+    public void setDataFinalizado(StartEndDate dataFinalizado) {
+        this.dataFinalizado = dataFinalizado;
     }
 
-    public List<String> getGenres() {
-        return genres;
+    public List<String> getGeneros() {
+        return generos;
     }
 
-    public void setGenres(List<String> genres) {
-        this.genres = genres;
+    public void setGeneros(List<String> generos) {
+        this.generos = generos;
     }
 
-    public Titulo getTitle() {
-        return title;
+    public Titulo getTitulos() {
+        return titulos;
     }
 
-    public void setTitle(Titulo title) {
-        this.title = title;
+    public void setTitulos(Titulo titulos) {
+        this.titulos = titulos;
     }
 
-    public CoverImage getCoverImage() {
-        return coverImage;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setCoverImage(CoverImage coverImage) {
-        this.coverImage = coverImage;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
-    public String getDescription() {
-        return description;
+    public List<Personagem> getPersonagens() {
+        return personagens;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setPersonagens(List<Personagem> personagens) {
+        this.personagens = personagens;
     }
 
-    public Studios getStudios() {
-        return studios;
+    public List<Plataforma> getLinksExternos() {
+        return linksExternos;
     }
 
-    public void setStudios(Studios studios) {
-        this.studios = studios;
-    }
-
-    public Characters getCharacters() {
-        return characters;
-    }
-
-    public void setCharacters(Characters characters) {
-        this.characters = characters;
-    }
-
-    public List<Plataforma> getExternalLinks() {
-        return externalLinks;
-    }
-
-    public void setExternalLinks(List<Plataforma> externalLinks) {
-        this.externalLinks = externalLinks;
+    public void setLinksExternos(List<Plataforma> linksExternos) {
+        this.linksExternos = linksExternos;
     }
 }

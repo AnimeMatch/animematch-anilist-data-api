@@ -1,9 +1,9 @@
 package teste.piProject.service.anime.dto;
 
-public class CardAnimeQuery {
+public class CardQuery {
     private CardDataDto data;
 
-    public CardAnimeQuery() {
+    public CardQuery() {
     }
 
     public CardDataDto getData() {
