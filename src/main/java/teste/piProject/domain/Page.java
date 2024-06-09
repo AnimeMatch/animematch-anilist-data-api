@@ -1,15 +1,15 @@
-package teste.piProject.service.anime.dto;
+package teste.piProject.domain;
 
-import teste.piProject.domain.PageInfo;
+import teste.piProject.service.anime.AnimeMedia;
 import teste.piProject.service.anime.dto.AnimeCard;
 
 import java.util.List;
 
-public class AnimePage {
+public class Page {
     private PageInfo pageInfo;
     private List<AnimeCard> media;
 
-    public AnimePage() {
+    public Page() {
     }
 
     public PageInfo getPageInfo() {
