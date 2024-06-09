@@ -2,6 +2,4 @@ spring:
   config:
     activate:
       on-profile: prod
-  servlet:
-    context-path: /api
 host: api
