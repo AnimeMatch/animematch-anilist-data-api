@@ -43,7 +43,3 @@ jobs:
         with:
           push: true
           tags: lucaslrodrigues/sprint-api-anilist:latest
-
-      - name: Trigger CD Workflow
-        if: github.ref == 'refs/heads/develop' && success()
-        run: echo "CI passed for develop branch"

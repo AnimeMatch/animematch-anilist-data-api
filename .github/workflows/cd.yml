@@ -1,14 +1,15 @@
 name: Deploy Anime Match
 on:
-  workflow_run:
-    workflows: ["CI Workflow"]
-    types:
-      - completed
+  push:
+    branches:
+      - main
+  pull_request:
+    branches: [ main ]
+    types: [opened, reopened]
 
 jobs:
   deploy:
     runs-on: self-hosted
-    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'develop' && github.event.workflow_run.event == 'pull_request' }}
     steps:
       - name: Pull Docker image
         run: docker pull lucaslrodrigues/sprint-api-anilist:latest
