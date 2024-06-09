@@ -1,13 +1,16 @@
 name: CI database API 
 
 on:
-  pull_request:
-    branches: [ main, develop ]
-    types: [opened, reopened]
+  workflow_run:
+    workflows: ["CI Workflow"]
+    types:
+      - completed
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main' }}
 
     steps:
       - name: Checkout code
@@ -44,3 +47,7 @@ jobs:
         with:
           push: true
           tags: lucaslrodrigues/sprint-api-anilist:latest
+
+      - name: Trigger CD Workflow
+        if: github.ref == 'refs/heads/main' && success()
+        run: echo "CI passed for main branch"
