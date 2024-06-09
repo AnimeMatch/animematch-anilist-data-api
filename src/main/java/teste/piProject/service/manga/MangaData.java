@@ -1,16 +1,24 @@
 package teste.piProject.service.manga;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import teste.piProject.service.anime.AnimeMedia;
+
 public class MangaData {
-    private MangaPage personagemPage;
+    @JsonProperty("Media")
+    private MangaMedia media;
 
     public MangaData() {
     }
 
-    public MangaPage getPersonagemPage() {
-        return personagemPage;
+    public MangaData(MangaMedia media) {
+        this.media = media;
     }
 
-    public void setPersonagemPage(MangaPage personagemPage) {
-        this.personagemPage = personagemPage;
+    public MangaMedia getMedia() {
+        return media;
+    }
+
+    public void setMedia(MangaMedia media) {
+        this.media = media;
     }
 }

@@ -1,0 +1,24 @@
+name: Deploy Anime Match
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches: [ main ]
+    types: [opened, reopened]
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Pull Docker image
+        run: docker pull lucaslrodrigues/sprint-api-anilist:latest
+
+      - name: Stop Docker container
+        run: docker stop api || true
+
+      - name: Remove Docker container
+        run: docker rm api || true
+
+      - name: Run Docker container
+        run: docker run --network=bridge --name api -d -p 8081:8081 lucaslrodrigues/sprint-api-anilist:latest
