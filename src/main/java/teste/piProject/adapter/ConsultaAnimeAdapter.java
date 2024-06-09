@@ -4,7 +4,7 @@ public class ConsultaAnimeAdapter {
     public static String dadosAnime(){
         String query = """
                 {
-                  Page (animePage: 1, perPage: 200) {
+                  Page (page: 1, perPage: 200) {
                         pageInfo {
                             total
                             currentPage

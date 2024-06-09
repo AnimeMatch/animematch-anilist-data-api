@@ -1,19 +1,20 @@
 package teste.piProject.service.anime.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import teste.piProject.domain.Page;
 
 public class CardDataDto {
     @JsonProperty("Page")
-    private AnimePage animePage;
+    private Page page;
 
     public CardDataDto() {
     }
 
-    public AnimePage getPage() {
-        return animePage;
+    public Page getPage() {
+        return page;
     }
 
-    public void setPage(AnimePage animePage) {
-        this.animePage = animePage;
+    public void setPage(Page page) {
+        this.page = page;
     }
 }
