@@ -1,4 +1,4 @@
-name: CI database API
+name: CI database API 
 
 on:
   pull_request:
