@@ -8,13 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import teste.piProject.domain.Page;
-import teste.piProject.service.anime.AnimeMedia;
+import teste.piProject.service.anime.dto.AnimePage;
 import teste.piProject.service.anime.AnimeService;
 import teste.piProject.service.anime.dto.AnimeCompletoDto;
-import teste.piProject.service.anime.dto.AnimeParaSalvarDto;
-
-import java.util.Map;
 
 @RestController
 @RequestMapping("/animes")
@@ -40,22 +36,22 @@ public class AnimeController {
     }
 
     @GetMapping("/cards")
-    public ResponseEntity<Page> getCards(@RequestParam int page, @RequestParam int qtdPaginas){
-        ResponseEntity<Page> response = service.cardAnimesDaTemporada(page, qtdPaginas);
+    public ResponseEntity<AnimePage> getCards(@RequestParam int page, @RequestParam int qtdPaginas){
+        ResponseEntity<AnimePage> response = service.cardAnimesDaTemporada(page, qtdPaginas);
         return ResponseEntity.status(response.getStatusCode()).body(response.getBody());
     }
 
     @GetMapping("/cards/temporada")
-    public ResponseEntity<Page> getAnimesDaTemporada(@RequestParam int page, @RequestParam int qtdPaginas){
-        ResponseEntity<Page> response = service.cardAnimesDaTemporada(page, qtdPaginas);
+    public ResponseEntity<AnimePage> getAnimesDaTemporada(@RequestParam int page, @RequestParam int qtdPaginas){
+        ResponseEntity<AnimePage> response = service.cardAnimesDaTemporada(page, qtdPaginas);
         return ResponseEntity.status(response.getStatusCode()).body(response.getBody());
     }
 
-    @GetMapping("/cards/mais-curtidos")
-    public ResponseEntity<Page> getAnimesMaisCurtidos(){
-        ResponseEntity<Page> response = service.cardAnimesMaisCurtidos();
-        return ResponseEntity.status(response.getStatusCode()).body(response.getBody());
-    }
+//    @GetMapping("/cards/mais-curtidos")
+//    public ResponseEntity<Page> getAnimesMaisCurtidos(){
+//        ResponseEntity<Page> response = service.cardAnimesMaisCurtidos();
+//        return ResponseEntity.status(response.getStatusCode()).body(response.getBody());
+//    }
 
     @GetMapping("/anime-para-salvar/{idApi}")
     public ResponseEntity<AnimeParaSalvarDto> getAnimeParaSalvar(@PathVariable String idApi){
@@ -69,14 +65,20 @@ public class AnimeController {
     }
 
     @GetMapping("/cards/search")
-    public ResponseEntity<Page> getSearch(@RequestParam String tituloBusca, @RequestParam int page, @RequestParam int qtdPaginas){
-        Page animes = service.searchAnime(tituloBusca, page, qtdPaginas);
+    public ResponseEntity<AnimePage> getSearch(@RequestParam String tituloBusca, @RequestParam int page, @RequestParam int qtdPaginas){
+        AnimePage animes = service.searchAnime(tituloBusca, page, qtdPaginas);
         return ResponseEntity.status(200).body(animes);
     }
 
     @GetMapping("/cards/genero")
-    public ResponseEntity<Page> getAnimesPorGenero(@RequestParam String genero, @RequestParam int page, @RequestParam int qtdPaginas){
-        Page animes = service.getAnimesPeloGenero(genero, page, qtdPaginas);
+    public ResponseEntity<AnimePage> getAnimesPorGenero(@RequestParam String genero, @RequestParam int page, @RequestParam int qtdPaginas){
+        AnimePage animes = service.getAnimesPeloGenero(genero, page, qtdPaginas);
+        return ResponseEntity.status(200).body(animes);
+    }
+
+    @GetMapping("/cards/em-trend")
+    public ResponseEntity<AnimePage> getAnimesEmTrend(@RequestParam int page, @RequestParam int qtdPaginas) {
+        AnimePage animes = service.getAnimesEmTrend(page, qtdPaginas);
         return ResponseEntity.status(200).body(animes);
     }
 }

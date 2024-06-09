@@ -1,19 +1,21 @@
-package teste.piProject.service.anime.dto;
+package teste.piProject.service.midia.dto;
 
-public class AnimeParaSalvarDto {
+public class MidiaParaSalvarDto {
     private int idApi;
     private String nome;
     private double notaMedia;
     private String imagem;
+    private String tipo;
 
-    public AnimeParaSalvarDto() {
+    public MidiaParaSalvarDto() {
     }
 
-    public AnimeParaSalvarDto(int idApi, String nome, double notaMedia, String imagem) {
+    public MidiaParaSalvarDto(int idApi, String nome, double notaMedia, String imagem, String tipo) {
         this.idApi = idApi;
         this.nome = nome;
         this.notaMedia = notaMedia;
         this.imagem = imagem;
+        this.tipo = tipo;
     }
 
     public int getIdApi() {
@@ -46,5 +48,13 @@ public class AnimeParaSalvarDto {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }
